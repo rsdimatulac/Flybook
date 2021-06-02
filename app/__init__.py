@@ -8,7 +8,7 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
-# from .api.post_routes import post_routes
+from .api.post_routes import post_routes
 
 from .seeds import seed_commands
 
@@ -32,7 +32,7 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-# app.register_blueprint(post_routes, url_prefix='/api/posts')
+app.register_blueprint(post_routes, url_prefix='/api/posts')
 db.init_app(app)
 Migrate(app, db)
 
@@ -70,6 +70,6 @@ def inject_csrf_token(response):
 @app.route('/<path:path>')
 def react_root(path):
     print("path", path)
-    if path == 'favicon.ico':
-        return app.send_static_file('favicon.ico')
+    if path == 'favicon.png':
+        return app.send_static_file('favicon.png')
     return app.send_static_file('index.html')
