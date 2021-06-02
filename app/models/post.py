@@ -1,0 +1,34 @@
+import datetime
+from .db import db
+# from app.models import db, User
+
+today = datetime.datetime.now()
+
+class Post(db.Model):
+    __tablename__ = 'posts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    # wall_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    body = db.Column(db.Text, nullable=False)
+    photo_src = db.Column(db.String(500))
+    created_at = db.Column(db.DateTime, nullable=False, default=today)
+    updated_at = db.Column(db.DateTime, nullable=False, default=today)
+
+    user = db.relationship(
+        'User', 
+        back_populates='posts',
+        # primaryjoin=(User.id == user_id),
+        # secondaryjoin=(User.id == wall_id)
+    )
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "user_id": self.user_id,
+            # "wall_id": self.wall_id,
+            "body": self.body,
+            "photo_src": self.photo_src,
+            "created_at": self.created_at,
+            "updated_at": self.updated_at,
+        }

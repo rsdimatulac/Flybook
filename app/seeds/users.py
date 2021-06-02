@@ -1,3 +1,4 @@
+import datetime
 from werkzeug.security import generate_password_hash
 from app.models import db, User
 
@@ -5,14 +6,37 @@ from app.models import db, User
 def seed_users():
 
     demo = User(
-        firstname="Demo", 
-        lastname="User", 
-        email='demo@aa.io',
-        password='password'
+        firstname="Amelia", 
+        lastname="Earhart", 
+        email='amelia@fb.com',
+        password='password',
+        birthday=datetime.date(1897, 7, 24),
+        profile_src="https://theflybook.s3.amazonaws.com/amelia.jpg",
+        cover_src="https://theflybook.s3.amazonaws.com/amelia_cover.jpg",
+        bio="Adventure is worthwhile in itself.",
+        location="Somewhere in Howland Island",
+        school="Columbia University",
+        work="Aviator and Author"
     )
 
     db.session.add(demo)
+    db.session.commit()
 
+    user_1 = User(
+        firstname="Renerose",
+        lastname="Dimatulac",
+        email='rdimatulac@fb.com',
+        password='password',
+        birthday=datetime.date(1993, 11, 27),
+        profile_src="https://theflybook.s3.amazonaws.com/ren.jpg",
+        cover_src="https://theflybook.s3.amazonaws.com/ren_cover.jpg",
+        bio="Your thoughts and actions become your world.",
+        location="Chicago, Illinois",
+        school="App Academy",
+        work="Software Engineer"
+    )
+
+    db.session.add(user_1)
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
