@@ -61,13 +61,14 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
+    birthday = request.get_json()['birthday']
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
             firstname=form.data['firstname'],
             lastname=form.data['lastname'],
             email=form.data['email'],
-            birthday=form.data['birthday'],
+            birthday=birthday,
             password=form.data['password']
         )
         db.session.add(user)
