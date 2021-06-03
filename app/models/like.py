@@ -10,12 +10,16 @@ class Like(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
+    comment_id = db.Column(db.Integer, db.ForeignKey('comments.id'), nullable=False)
     like_type = db.Column(db.String(10), nullable=False, default='post')
     created_at = db.Column(db.DateTime, nullable=False, default=today)
     updated_at = db.Column(db.DateTime, nullable=False, default=today)
 
     user = db.relationship('User', back_populates='likes')
 
+    post = db.relationship('Post', back_populates='likes')
+
+    comment = db.relationship('Comment', back_populates='likes')
 
     def to_dict(self):
         return {

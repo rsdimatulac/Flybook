@@ -22,6 +22,10 @@ class Post(db.Model):
         # secondaryjoin=(User.id == wall_id)
     )
 
+    comments = db.relationship('Comment', back_populates="post")
+
+    likes = db.relationship('Like', back_populates="post")
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -31,4 +35,6 @@ class Post(db.Model):
             "photo_src": self.photo_src,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "comments": {comment.id: comment.to_dict() for comment in self.comments},
+            "likes": {like.id: like.to_dict() for like in self.likes},
         }

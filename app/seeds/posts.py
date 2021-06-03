@@ -26,10 +26,16 @@ def seed_posts():
         photo_src="https://theflybook.s3.amazonaws.com/posts/ren_1.jpg"
     )
 
+    post_5 = Post(
+        user_id=3, # Wilbur
+        body="The desire to fly is an idea handed down to us by our ancestors who, in their grueling travels across trackless lands in prehistoric times, looked enviously on the birds soaring freely through.",
+    )
+
     db.session.add(post_1)
     db.session.add(post_2)
     db.session.add(post_3)
     db.session.add(post_4)
+    db.session.add(post_5)
     db.session.commit()
 
 

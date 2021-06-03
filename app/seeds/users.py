@@ -19,9 +19,6 @@ def seed_users():
         work="Aviator and Author"
     )
 
-    db.session.add(demo)
-    db.session.commit()
-
     user_1 = User(
         firstname="Renerose",
         lastname="Dimatulac",
@@ -36,7 +33,22 @@ def seed_users():
         work="Software Engineer"
     )
 
+    user_2 = User(
+        firstname="Wilbur",
+        lastname="Wright",
+        email='wilbur@fb.com',
+        password='password',
+        birthday=datetime.date(1867, 4, 16),
+        profile_src="https://theflybook.s3.amazonaws.com/wilbur.jpg",
+        cover_src="https://theflybook.s3.amazonaws.com/wilbur_cover.jpeg",
+        bio="If birds can glide for long periods of time, then… why can't I?",
+        location="Millville, Indiana",
+        work="Aviator and Inventor"
+    )
+
+    db.session.add(demo)
     db.session.add(user_1)
+    db.session.add(user_2)
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.

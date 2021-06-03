@@ -16,6 +16,10 @@ class Comment(db.Model):
 
     user = db.relationship('User', back_populates='comments')
 
+    post = db.relationship('Post', back_populates='comments')
+
+    likes = db.relationship('Like', back_populates='comment')
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -24,4 +28,5 @@ class Comment(db.Model):
             "body": self.body,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "likes": {like.id: like.to_dict() for like in self.likes}
         }
