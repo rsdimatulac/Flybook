@@ -28,28 +28,15 @@ const SignUpForm = () => {
     return <option value={year} key={year}>{year}</option>
   });
 
-  const resetValues = () => {
-    setFirstname("");
-    setLastname("");
-    setEmail("");
-    setMonth("");
-    setDay("");
-    setYear("");
-    setPassword("");
-    setConfirmPassword("");
-    setErrors([]);
-  }
-
   const onSignUp = async (e) => {
     e.preventDefault();
 
     if (password === confirmPassword) {
       const data = await dispatch(signUp({ firstname, lastname, email, birthday: `${year}-${month}-${day}`, password}));
+      setErrors([]);
       if (data?.errors) {
         setErrors(data?.errors);
       }
-      resetValues();
-      return;
     } else if (password !== confirmPassword) {
       const valErrors = [...errors, "Passwords must match."]
       setErrors(valErrors);
