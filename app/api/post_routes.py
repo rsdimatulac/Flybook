@@ -1,59 +1,68 @@
+import datetime
 from flask import Blueprint, jsonify, request
-# from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, User, Post
+from app.forms import PostForm
+
 
 post_routes = Blueprint('posts', __name__)
 
 
 @post_routes.route('/')  # GET /api/posts/
 def posts():
+    friends = current_user.friends  # {friends, current_user}
+    friends.append(current_user)
+    posts = [user.posts for user in friends]  # [[post1, post2], [postssss]]
+    new_posts = {}
+    for sub_posts in posts:
+        for post in sub_posts:
+            new_posts[post.id] = post.to_dict()
+
+    return new_posts  # only return current_user's posts and their friends' posts
+
     # posts = Post.query.all()
-    # postList = {post.id: post.to_dict() for post in posts}
-    # print("!!!!!!!!!!!!USER", userList)
-    print("!!!!!!!!! USERRRRSS", userList)
+    # return {post.id: post.to_dict() for post in posts}
 
-    return userList
-    # return {
-    #     1: {"id": 1,
-    #         "user_id": 5,
-    #         "wall_id": 2,
-    #         "body": "Post bodyyy here",
-    #         "photo_url": "Photo url here",
-    #         "created_at": "Created at",
-    #         "updated_at": "Updated at here"
-    #         },
-    #     2: {"id": 2,
-    #         "user_id": 10,
-    #         "wall_id": 4,
-    #         "body": "Post bodyyy here",
-    #         "photo_url": "Photo url here",
-    #         "created_at": "Created at",
-    #         "updated_at": "Updated at here"
-    #         }
-    # }
 
+today = datetime.datetime.now()
 
 @post_routes.route('/', methods=['POST'])  # POST /api/posts/
 def new_post():
+    # id = request.get_json()['user_id']
+    # print("IDDDDDD", id)
 
-    # get the data from request body
-    # user_id = request.get_json()['user_id']
-    # wall_id = request.get_json()['wall_id']
-    # body = request.get_json()['body']
-    # pgoto
-    # updated_at = request.get_json()['updated_at']
-
-    # create an instance of the MODEL
-    # post = Post(
-    #              firstname=form.data['firstname'],
-    #              lastname = form.data['lastname'],
-    #              email = form.data['email'],
-    #              password = form.data['password']
-    #        )
-    # db.session.add(post)
-    # db.session.commit()
-    # return post.
-    return ("post.to_dict() HIT POST POST ROUTE")
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        post = Post(
+            # user_id=id,
+            user_id=current_user.id,
+            body=form.data['body'],
+            photo_src=form.data['photo_src'],
+        )
+        db.session.add(post)
+        db.session.commit()
+        return post.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-# @post_routes.route('/<int:post_id>', methods=['PATCH']) # PATCH /api/posts/:post_id
+@post_routes.route('/<int:post_id>', methods=['PATCH']) # PATCH /api/posts/:post_id
+def edit_post(post_id):
+    
+    post_to_edit = Post.query.get(post_id)
+    body = request.get_json()['body']
+    photo_src = request.get_json()['photo_src']
+
+    post_to_edit.body = body
+    post_to_edit.photo_src = photo_src
+    db.session.commit()
+    return post_to_edit.to_dict()
+
+
+@post_routes.route('/<int:post_id>', methods=['DELETE']) # DELETE /api/posts/:post_id
+def delete_post(post_id):
+
+    post_to_delete = Post.query.get(post_id)
+    db.session.delete(post_to_delete)
+    db.session.commit()
+    return post_to_delete.to_dict()
