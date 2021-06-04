@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { GrClose as Close } from "react-icons/gr";
+import { GrFormClose as Close } from "react-icons/gr";
 import './Modal.css';
 
 const ModalContext = React.createContext();

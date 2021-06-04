@@ -20,7 +20,6 @@
     font-size: 17px;
     outline-width: 0;
     border: 1px solid #dddfe2;
-    vertical-align: middle;
 }
 
 ::placeholder {
@@ -37,7 +36,8 @@
     flex-direction: column;
 }
 
-.login__buttons button {
+.login__buttons button,
+.login__buttons div {
     margin-bottom: 18px;
     height: 48px;
     box-sizing: border-box;
@@ -56,7 +56,7 @@
     background-color: #126de4;
 }
 
-.login__buttons div {
+.login__buttons > p {
     text-align: center;
     color: #1877F2;
     font-weight: 600;
@@ -64,13 +64,18 @@
     font-size: 14px;
 }
 
-.login__buttons div:hover {
+.login__buttons > p:hover {
     text-decoration: underline;
 }
 
 #demo__login {
     background-color: #42B72A;
+    align-self: center;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
 }
 
 #demo__login:hover {
