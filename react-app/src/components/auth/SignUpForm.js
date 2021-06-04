@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from 'react-router-dom';
 import { signUp, login } from '../../store/session';
+import { Modal } from "../../context/Modal";
+import useConsumeContext from "../../context/ModalContext";
+import "./SignUpForm.css";
+
 
 const SignUpForm = () => {
+  const { setShowSignUp } = useConsumeContext();
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -32,8 +37,9 @@ const SignUpForm = () => {
     e.preventDefault();
 
     if (password === confirmPassword) {
-      const data = await dispatch(signUp({ firstname, lastname, email, birthday: `${year}-${month}-${day}`, password}));
+      const data = await dispatch(signUp({ firstname, lastname, email, birthday: `${year}-${month}-${day}`, password }));
       setErrors([]);
+      setShowSignUp(false);
       if (data?.errors) {
         setErrors(data?.errors);
       }
@@ -50,6 +56,7 @@ const SignUpForm = () => {
     e.preventDefault();
     await dispatch(login("amelia@fb.com", "password"));
     history.push(`/feed`);
+    setShowSignUp(false);
   };
 
   useEffect(() => {
@@ -60,119 +67,134 @@ const SignUpForm = () => {
 
 
   return (
-    <div>
-      <h1>Sign Up Form</h1>
-      <form onSubmit={onSignUp}>
-        <div>
-          <div className="errors">
-            {errors?.map((error) => (
-              <div key={error}>・{error}</div>
-            ))}
+    <>
+      <Modal onClose={() => setShowSignUp(prevState => !prevState)}>
+        <div className="signup">
+          <div className="signup__header">
+            <h1>Sign Up</h1>
+            <p>It's quick and easy.</p>
           </div>
-          <input
-            type="text"
-            name="firstname"
-            onChange={(e) => setFirstname(e.target.value)}
-            value={firstname}
-            placeholder="First name"
-            autoComplete="off"
-            required
-          ></input>
+          <hr />
+          <form onSubmit={onSignUp}>
+            <div className="errors">
+              {errors?.map((error) => (
+                <div key={error}>・{error}</div>
+              ))}
+            </div>
+            <div className="signup__name">
+              <div className="signup__input">
+                <input
+                  type="text"
+                  name="firstname"
+                  onChange={(e) => setFirstname(e.target.value)}
+                  value={firstname}
+                  placeholder="First name"
+                  autoComplete="off"
+                  required
+                ></input>
+              </div>
+              <div className="signup__input">
+                <input
+                  type="text"
+                  name="lastname"
+                  onChange={(e) => setLastname(e.target.value)}
+                  value={lastname}
+                  placeholder="Last name"
+                  autoComplete="off"
+                  required
+                ></input>
+              </div>
+            </div>
+            <div className="signup__input">
+              <input
+                type="email"
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                placeholder="Email"
+                autoComplete="off"
+                required
+              ></input>
+            </div>
+            <div className="signup__input">
+              <input
+                type="password"
+                name="password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                placeholder="Password"
+                autoComplete="off"
+                required
+              ></input>
+            </div>
+            <div className="signup__input">
+              <input
+                type="password"
+                name="confirm_password"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                value={confirmPassword}
+                placeholder="Confirm password"
+                autoComplete="off"
+                required
+              ></input>
+            </div>
+            <div className="signup__birthday">
+              <p>Birthday</p>
+              <div className="birthday__div">
+                <select
+                  placeholder="Month"
+                  name="month"
+                  onChange={(e) => setMonth(e.target.value)}
+                  value={month}
+                  required
+                >
+                  <option value='' disabled>Month</option>
+                  <option value='1' key='1' >Jan</option>
+                  <option value='2' key='2' >Feb</option>
+                  <option value='3' key='3' >Mar</option>
+                  <option value='4' key='4' >Apr</option>
+                  <option value='5' key='5' >May</option>
+                  <option value='6' key='6' >Jun</option>
+                  <option value='7' key='7' >Jul</option>
+                  <option value='8' key='8' >Aug</option>
+                  <option value='9' key='9' >Sep</option>
+                  <option value='10' key='10' >Oct</option>
+                  <option value='11' key='11' >Nov</option>
+                  <option value='12' key='12' >Dec</option>
+                </select>
+                <select
+                  placeholder="Day"
+                  name="day"
+                  onChange={(e) => setDay(e.target.value)}
+                  value={day}
+                  required
+                >
+                  <option value='' disabled>Day</option>
+                  {dayOptions}
+                </select>
+                <select
+                  placeholder="Year"
+                  name="day"
+                  onChange={(e) => setYear(e.target.value)}
+                  value={year}
+                  required
+                >
+                  <option value='' disabled>Year</option>
+                  {yearOptions}
+                </select>
+              </div>
+            </div>
+            <div className="signup__terms">
+              <p>By clicking Sign Up, you agree to our Terms, Data Policy and Awesomeness.</p>
+            </div>
+            <div className="signup__buttons">
+              <button id="signup__demo" onClick={loginDemo}>Demo User</button>
+              <button type="submit">Sign Up</button>
+            </div>
+          </form>
         </div>
-        <div>
-          <input
-            type="text"
-            name="lastname"
-            onChange={(e) => setLastname(e.target.value)}
-            value={lastname}
-            placeholder="Last name"
-            autoComplete="off"
-            required
-          ></input>
-        </div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            placeholder="Email"
-            autoComplete="off"
-            required
-          ></input>
-        </div>
-        <div>
-          <input
-            type="password"
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            placeholder="Password"
-            autoComplete="off"
-            required
-          ></input>
-        </div>
-        <div>
-          <input
-            type="password"
-            name="confirm_password"
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            value={confirmPassword}
-            placeholder="Confirm password"
-            autoComplete="off"
-            required
-          ></input>
-        </div>
-        <div>
-          <label>Birthday</label>
-          <div>
-            <select
-              placeholder="Month"
-              name="month"
-              onChange={(e) => setMonth(e.target.value)}
-              value={month}
-              required
-            >
-              <option value='' disabled>Month</option>
-              <option value='1' key='1' >Jan</option>
-              <option value='2' key='2' >Feb</option>
-              <option value='3' key='3' >Mar</option>
-              <option value='4' key='4' >Apr</option>
-              <option value='5' key='5' >May</option>
-              <option value='6' key='6' >Jun</option>
-              <option value='7' key='7' >Jul</option>
-              <option value='8' key='8' >Aug</option>
-              <option value='9' key='9' >Sep</option>
-              <option value='10' key='10' >Oct</option>
-              <option value='11' key='11' >Nov</option>
-              <option value='12' key='12' >Dec</option>
-            </select>
-            <select
-              placeholder="Day"
-              name="day"
-              onChange={(e) => setDay(e.target.value)}
-              value={day}
-              required
-            >
-              <option value='' disabled>Day</option>
-              {dayOptions}
-            </select>
-            <select
-              placeholder="Year"
-              name="day"
-              onChange={(e) => setYear(e.target.value)}
-              value={year}
-              required
-            >
-              <option value='' disabled>Year</option>
-              {yearOptions}
-            </select>
-          </div>
-        </div>
-        <button type="submit">Sign Up</button>
-        <button onClick={loginDemo}>Demo User</button>
-      </form>
-    </div>
+      </Modal>
+    </>
   );
 };
 

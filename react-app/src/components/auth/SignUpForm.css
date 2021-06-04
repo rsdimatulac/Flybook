@@ -1,0 +1,114 @@
+.signup {
+    background-color: white;
+    color: #1C1E21;
+    border-radius: 8px;
+    padding: 18px;
+    height: fit-content;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
+}
+
+.signup__header h1 {
+    font-size: 32px;
+}
+
+.signup__header p {
+    color: #606770;
+    padding-top: 6px;
+}
+
+.signup hr {
+    margin: 12px 0;
+    border-color: rgba(211, 211, 211, 0.226);
+}
+
+.signup__name {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8px;
+}
+
+.signup__input {
+    padding-bottom: 8px;
+}
+
+::placeholder {
+    font-size: 17px;
+}
+
+.signup__input input {
+    background-color: #F5F6F7;
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    padding: 11px;
+    border-radius: 6px;
+    font-size: 17px;
+    outline-width: 0;
+    border: 1px solid #ccd0d5;
+}
+
+.signup__birthday p {
+    font-size: 14px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+    color: #606770;
+}
+
+.birthday__div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 8px;
+    padding-bottom: 12px;
+}
+
+.birthday__div select {
+    background-color: #F5F6F7;
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    border-radius: 6px;
+    outline-width: 0;
+    border: 1px solid #ccd0d5;
+    padding: 11px;
+}
+
+.signup__terms {
+    padding-bottom: 12px;
+    color: #777777;
+    font-size: 11px;
+}
+
+.signup__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 12px;
+}
+
+.signup__buttons button {
+    height: 36px;
+    box-sizing: border-box;
+    padding: 0 32px;
+    text-align: center;
+    background-color: #00a400;
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.signup__buttons button:hover {
+    background-color: #69a74e;
+}
+
+#signup__demo {
+    background-color: #1877F2;
+}
+
+#signup__demo:hover {
+    background-color: #2173dfe1;
+}

@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
+import useConsumeContext from "../../context/ModalContext";
+import SignUpModal from "./SignUpForm";
+
 import "./LoginForm.css";
 
 
 const LoginForm = () => {
+  const { showSignUp, setShowSignUp } = useConsumeContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -22,10 +26,6 @@ const LoginForm = () => {
       setErrors(data?.errors);
     }
   };
-
-  const showSignUpModal = () => {
-
-  }
 
   useEffect(() => {
     if (user) {
@@ -70,11 +70,12 @@ const LoginForm = () => {
         <div className="login__buttons">
           <button type="submit">Log In</button>
           <button onClick={loginDemo}>Demo User</button>
-          <div>Forgot Password?</div>
+          <p>Forgot Password?</p>
           <hr />
-          <button id="demo__login" onClick={showSignUpModal}>Create New Account</button>
+          <div id="demo__login" onClick={() => setShowSignUp(prevState => !prevState)}><p>Create New Account</p></div>
         </div>
       </form>
+      {showSignUp && <SignUpModal />}
     </div>
   );
 };
