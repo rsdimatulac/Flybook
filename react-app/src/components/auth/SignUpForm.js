@@ -39,9 +39,10 @@ const SignUpForm = () => {
     if (password === confirmPassword) {
       const data = await dispatch(signUp({ firstname, lastname, email, birthday: `${year}-${month}-${day}`, password }));
       setErrors([]);
-      setShowSignUp(false);
       if (data?.errors) {
         setErrors(data?.errors);
+      } else {
+        setShowSignUp(false);
       }
     } else if (password !== confirmPassword) {
       const valErrors = [...errors, "Passwords must match."]
@@ -78,7 +79,7 @@ const SignUpForm = () => {
           <form onSubmit={onSignUp}>
             <div className="errors">
               {errors?.map((error) => (
-                <div key={error}>・{error}</div>
+                <div className="errors__div" key={error}>・{error}</div>
               ))}
             </div>
             <div className="signup__name">

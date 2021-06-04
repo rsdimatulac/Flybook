@@ -10,6 +10,10 @@
     font-family: SFProText-Regular, Helvetica, Arial, sans-serif;
 }
 
+.errors__div {
+    padding-bottom: 8px;
+}
+
 .signup__header h1 {
     font-size: 32px;
 }

@@ -44,7 +44,7 @@ const LoginForm = () => {
       <form onSubmit={onLogin}>
         <div className="errors">
           {errors?.map((error) => (
-            <div key={error}>・{error}</div>
+            <div className="errors__div" key={error}>・{error}</div>
           ))}
         </div>
         <div className="login__input">
