@@ -1,0 +1,78 @@
+.login {
+    background-color: white;
+    border-radius: 8px;
+    padding: 18px;
+    height: fit-content;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.login__input {
+    padding-bottom: 18px;
+}
+
+.login__input input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 17px;
+    outline-width: 0;
+    border: 1px solid #dddfe2;
+    vertical-align: middle;
+}
+
+::placeholder {
+    font-size: 17px;
+}
+
+.login__buttons hr {
+    margin: 18px 0;
+    border-color: rgba(211, 211, 211, 0.226);
+}
+
+.login__buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.login__buttons button {
+    margin-bottom: 18px;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 0 16px;
+    text-align: center;
+    background-color: #1877F2;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login__buttons button:hover {
+    background-color: #126de4;
+}
+
+.login__buttons div {
+    text-align: center;
+    color: #1877F2;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.login__buttons div:hover {
+    text-decoration: underline;
+}
+
+#demo__login {
+    background-color: #42B72A;
+    cursor: pointer;
+}
+
+#demo__login:hover {
+    background-color: #3da728;
+}

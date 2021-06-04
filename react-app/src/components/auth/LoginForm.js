@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../../store/session";
+import "./LoginForm.css";
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -21,6 +23,10 @@ const LoginForm = () => {
     }
   };
 
+  const showSignUpModal = () => {
+
+  }
+
   useEffect(() => {
     if (user) {
       history.push(`/feed`);
@@ -34,34 +40,40 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h1>Login Form</h1>
+    <div className="login">
       <form onSubmit={onLogin}>
         <div className="errors">
           {errors?.map((error) => (
             <div key={error}>・{error}</div>
           ))}
         </div>
-        <div>
+        <div className="login__input">
           <input
             name="email"
-            type="text"
+            type="email"
             placeholder="Email"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div>
+        <div className="login__input">
           <input
             name="password"
             type="password"
             placeholder="Password"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="submit">Login</button>
-        <button onClick={loginDemo}>Demo User</button>
+        <div className="login__buttons">
+          <button type="submit">Log In</button>
+          <button onClick={loginDemo}>Demo User</button>
+          <div>Forgot Password?</div>
+          <hr />
+          <button id="demo__login" onClick={showSignUpModal}>Create New Account</button>
+        </div>
       </form>
     </div>
   );
