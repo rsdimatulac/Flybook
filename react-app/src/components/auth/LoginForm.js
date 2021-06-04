@@ -23,37 +23,47 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (user) {
-      history.push(`/`);
+      history.push(`/feed`);
     }
   }, [user, history])
 
+  const loginDemo = async (e) => {
+    e.preventDefault();
+    await dispatch(login("amelia@fb.com", "password"));
+    history.push(`/feed`);
+  };
+
   return (
-    <form onSubmit={onLogin}>
-      <div className="errors">
-        {errors?.map((error) => (
-          <div key={error}>・{error}</div>
-        ))}
-      </div>
-      <div>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+    <div>
+      <h1>Login Form</h1>
+      <form onSubmit={onLogin}>
+        <div className="errors">
+          {errors?.map((error) => (
+            <div key={error}>・{error}</div>
+          ))}
+        </div>
+        <div>
+          <input
+            name="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
         <button type="submit">Login</button>
-      </div>
-    </form>
+        <button onClick={loginDemo}>Demo User</button>
+      </form>
+    </div>
   );
 };
 
