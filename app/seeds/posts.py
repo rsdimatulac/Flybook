@@ -4,30 +4,35 @@ from app.models import db, Post, User
 
 def seed_posts():
 
-    post_1 = Post( # Amelia
-        user_id=1,
+    post_1 = Post(
+        user_id=1,  # Amelia
+        wall_id=2,  # Ren
         body="Women must try to do things as men have tried. When they fail, their failure must be but a challenge to others.",
         photo_src="https://theflybook.s3.amazonaws.com/posts/amelia_1.jpg"
     )
 
-    post_2 = Post( # Amelia
-        user_id=1,
+    post_2 = Post(
+        user_id=1,  # Amelia
+        wall_id=1,  # Amelia
         body="The most effective way to do it, is to do it.",
     )
 
-    post_3 = Post( # Ren
-        user_id=2,
+    post_3 = Post(
+        user_id=2,  # Ren
+        wall_id=2,  # Ren
         body="Welcome to Flybook!",
     )
 
-    post_4 = Post( # Ren
-        user_id=2,
+    post_4 = Post(
+        user_id=2,  # Ren
+        wall_id=1,  # Amelia
         body="A bird sitting on a tree is never afraid of the branch breaking, because its trust is not on the branch but on its own wings.",
         photo_src="https://theflybook.s3.amazonaws.com/posts/ren_1.jpg"
     )
 
     post_5 = Post(
-        user_id=3, # Wilbur
+        user_id=3,  # Wilbur
+        wall_id=1,  # Amelia
         body="The desire to fly is an idea handed down to us by our ancestors who, in their grueling travels across trackless lands in prehistoric times, looked enviously on the birds soaring freely through.",
     )
 

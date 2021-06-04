@@ -3,9 +3,11 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .friend import friends
-# from app.models import db, Post
+from .friend_request import friend_requests
+from .post import Post
 
 today = datetime.datetime.now()
+
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -25,16 +27,23 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, nullable=False, default=today)
     updated_at = db.Column(db.DateTime, nullable=False, default=today)
 
-    posts = db.relationship(
-      'Post', 
-      back_populates='user',
-      # primaryjoin=(Post.user_id == id),
-      # secondaryjoin=(Post.wall_id == id),
+    post_sender = db.relationship(
+        'Post',
+        back_populates='post_user_id',
+        foreign_keys=Post.user_id,
+        cascade='all, delete-orphan'
     )
+
+    post_receiver = db.relationship(
+        'Post',
+        back_populates='post_wall_id',
+        foreign_keys=Post.wall_id,
+        cascade='all, delete-orphan'
+    )
+
     comments = db.relationship('Comment', back_populates='user')
     likes = db.relationship('Like', back_populates='user')
 
-    # users = db.relationship('User', secondary=friends, back_populates='friends', foreign_key)
     users = db.relationship(
         'User',
         secondary=friends,
@@ -42,30 +51,45 @@ class User(db.Model, UserMixin):
         primaryjoin=(friends.c.user_a == id),
         secondaryjoin=(friends.c.user_b == id)
     )
-    
+
     friends = db.relationship(
-      'User', 
-      secondary=friends, 
-      back_populates='users', 
-      primaryjoin=(friends.c.user_a == id),
-      secondaryjoin=(friends.c.user_b == id)
+        'User',
+        secondary=friends,
+        back_populates='users',
+        primaryjoin=(friends.c.user_a == id),
+        secondaryjoin=(friends.c.user_b == id)
     )
-    
+
+    request_received = db.relationship(
+        'User',
+        secondary=friend_requests,
+        back_populates='request_sent',
+        primaryjoin=(friend_requests.c.sender_id == id),
+        secondaryjoin=(friend_requests.c.receiver_id == id)
+    )
+
+    request_sent = db.relationship(
+        'User',
+        secondary=friend_requests,
+        back_populates='request_received',
+        primaryjoin=(friend_requests.c.receiver_id == id),
+        secondaryjoin=(friend_requests.c.sender_id == id)
+    )
 
     @property
     def password(self):
         return self.hashed_password
 
-
     @password.setter
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
-
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
     def to_dict_no_friends(self):
+        posts = Post.query.filter(Post.wall_id == self.id)
+
         return {
             "id": self.id,
             "firstname": self.firstname,
@@ -79,12 +103,21 @@ class User(db.Model, UserMixin):
             "school": self.school,
             "work": self.work,
             "created_at": self.created_at,
-            "posts": {post.id: post.to_dict() for post in self.posts},
+            "posts": {post.id: post.to_dict() for post in posts},
             "comments": {comment.id: comment.to_dict() for comment in self.comments},
             "likes": {like.id: like.to_dict() for like in self.likes}
         }
 
+    def to_dict_simple(self):
+      return {
+          "id": self.id,
+          "firstname": self.firstname,
+          "lastname": self.lastname,
+      }
+
     def to_dict(self):
+        posts = Post.query.filter(Post.wall_id == self.id)
+
         return {
             "id": self.id,
             "firstname": self.firstname,
@@ -99,7 +132,9 @@ class User(db.Model, UserMixin):
             "work": self.work,
             "created_at": self.created_at,
             "friends": {friend.id: friend.to_dict_no_friends() for friend in self.friends},
-            "posts": {post.id: post.to_dict() for post in self.posts},
+            "request_sent": {user.id: user.to_dict_simple() for user in self.request_sent},
+            "request_received": {user.id: user.to_dict_simple() for user in self.request_received},
+            "posts": {post.id: post.to_dict() for post in posts},
             "comments": {comment.id: comment.to_dict() for comment in self.comments},
             "likes": {like.id: like.to_dict() for like in self.likes}
         }
