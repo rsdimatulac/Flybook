@@ -23,11 +23,12 @@ def validation_errors_to_error_messages(validation_errors):
 def posts():
     friends = current_user.friends  # {friends, current_user}
     friends.append(current_user)
-    posts = [user.posts for user in friends]  # [[post1, post2], [postssss]]
+    posts = [user.to_dict()['posts'] for user in friends]  # [[post1, post2], [postssss]]
     new_posts = {}
+
     for sub_posts in posts:
         for post in sub_posts:
-            new_posts[post.id] = post.to_dict()
+            new_posts[post] = sub_posts[post]
 
     return new_posts  # only return current_user's posts and their friends' posts
 
