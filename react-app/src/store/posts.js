@@ -36,7 +36,7 @@ export const getAllPosts = () => async (dispatch) => {
     }
 }
 
-export const createPost = (body, photo_src) => async (dispatch) => {
+export const createPost = (body, photo_src, wall_id) => async (dispatch) => {
     try {
         const response = await fetch(`/api/posts/`, {
             method: "POST",
@@ -45,7 +45,8 @@ export const createPost = (body, photo_src) => async (dispatch) => {
             },
             body: JSON.stringify({
                 body,
-                photo_src
+                photo_src,
+                wall_id
             })
         });
         if (!response.ok) throw response;

@@ -23,7 +23,7 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -38,7 +38,7 @@ function App() {
         </Route>
         <ProtectedRoute path="/feed">
           <NavBar user={user}/>
-          <NewsFeedPage />
+          <NewsFeedPage user={user}/>
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact>
           <NavBar user={user}/>

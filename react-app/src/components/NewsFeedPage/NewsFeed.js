@@ -1,10 +1,17 @@
 import React from 'react';
+import Sidebar from "./Sidebar/Sidebar";
+import Feed from "./Feed/Feed";
+import Widgets from "./Widgets/Widgets";
 import "./NewsFeed.css";
 
-const NewsFeed = () => {
+
+const NewsFeed = ({ user }) => {
     return (
-        <div>
-            <h1>News Feed</h1>
+        <div className="news__feed">
+            <Sidebar user={user}/>
+            <Feed user={user}/>
+            <Widgets />
+            {/* Friend Request/Birthdays */}
         </div>
     )
 }

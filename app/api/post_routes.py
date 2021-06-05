@@ -43,10 +43,11 @@ def new_post():
 
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    wall_id = request.get_json()['wall_id']
     if form.validate_on_submit():
         post = Post(
-            # user_id=id,
             user_id=current_user.id,
+            wall_id=wall_id,
             body=form.data['body'],
             photo_src=form.data['photo_src'],
         )
