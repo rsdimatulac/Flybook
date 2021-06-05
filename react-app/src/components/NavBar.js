@@ -102,23 +102,23 @@ const NavBar = ({ user }) => {
           <hr />
           <a href="https://github.com/rsdimatulac/Flybook" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="dropdown__github">
-              <GitHubIcon fontSize="medium" />
+              <GitHubIcon/>
               <p>GitHub</p>
             </div>
           </a>
           <hr />
           <div className="dropdown__option">
-            <Brightness2Icon fontSize="medium" />
+            <Brightness2Icon/>
             <p>Dark mode</p>
           </div>
           <a href="https://rsdimatulac.github.io/" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="dropdown__option">
-              <InfoIcon fontSize="medium" />
+              <InfoIcon/>
               <p>About the developer</p>
             </div>
           </a>
           <div className="dropdown__option" onClick={onLogout}>
-            <ExitToAppIcon fontSize="medium" />
+            <ExitToAppIcon/>
             <p>Logout</p>
           </div>
         </div>)}

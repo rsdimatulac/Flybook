@@ -1,0 +1,7 @@
+.feed {
+    flex: 1.20; /* take precedence, take up as much room as it can*/
+    padding: 30px 100px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

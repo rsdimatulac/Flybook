@@ -88,7 +88,12 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict_no_friends(self):
-        posts = Post.query.filter(Post.wall_id == self.id)
+        posts = Post.query.filter(Post.wall_id == self.id).all()
+        # all_posts = {}
+        # user_posts = Post.query.filter(Post.user_id == self.id).all()
+        # all_posts.append(user_posts)
+        # friends_posts = Post.query.filter(Post.wall_id == self.id).all()
+        # all_posts.append(friends_posts)
 
         return {
             "id": self.id,
@@ -113,10 +118,16 @@ class User(db.Model, UserMixin):
           "id": self.id,
           "firstname": self.firstname,
           "lastname": self.lastname,
+          "profile_src": self.profile_src
       }
 
     def to_dict(self):
-        posts = Post.query.filter(Post.wall_id == self.id)
+        posts = Post.query.filter(Post.wall_id == self.id).all()
+        # all_posts = {}
+        # user_posts = Post.query.filter(Post.user_id == self.id).all()
+        # all_posts.append(user_posts)
+        # friends_posts = Post.query.filter(Post.wall_id == self.id).all()
+        # all_posts.append(friends_posts)
 
         return {
             "id": self.id,
