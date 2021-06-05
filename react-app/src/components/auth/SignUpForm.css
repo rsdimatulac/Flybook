@@ -91,7 +91,8 @@
     grid-column-gap: 12px;
 }
 
-.signup__buttons button {
+.signup__buttons button,
+.signup__buttons div {
     height: 36px;
     box-sizing: border-box;
     padding: 0 32px;
@@ -103,6 +104,12 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
+}
+
+.signup__buttons div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .signup__buttons button:hover {

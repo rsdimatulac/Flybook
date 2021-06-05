@@ -189,7 +189,7 @@ const SignUpForm = () => {
               <p>By clicking Sign Up, you agree to our Terms, Data Policy and Awesomeness.</p>
             </div>
             <div className="signup__buttons">
-              <button id="signup__demo" onClick={loginDemo}>Demo User</button>
+              <div id="signup__demo" onClick={loginDemo}><p>Demo User</p></div>
               <button type="submit">Sign Up</button>
             </div>
           </form>
