@@ -1,0 +1,202 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    height: 56px;
+    background-color: white;
+    z-index: 100;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.navbar__left {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.navbar__search {
+    display: flex;
+    align-items: center;
+    background-color: #eff3f5;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 999px;
+    width: 250px;
+}
+
+::placeholder {
+    font-size: 15px;
+}
+
+.navbar__search > input {
+    border: none;
+    background-color: transparent;
+    outline-width: 0;
+    margin-left: 2px;
+    width: 100%;
+}
+
+.navbar__logo {
+    height: 40px;
+    width: 40px;
+}
+
+.navbar__logo img {
+    height: 40px;
+    width: 40px;
+}
+
+.navbar__middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.navbar__option {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    cursor: pointer;
+}
+
+.navbar__option .MuiSvgIcon-root {
+    color: gray;
+}
+
+.navbar__option:hover .MuiSvgIcon-root {
+    color: #2e81f4;
+}
+
+.navbar__option--active > .MuiSvgIcon-root {
+    color: #2e81f4;
+}
+
+.navbar__option--active {
+    border-bottom: 4px solid #2e81f4;
+}
+
+.navbar__option:hover {
+    background-color: #eff2f5;
+    border-radius: 10px;
+    align-items: center;
+    padding: 10px 30px;
+    border-bottom: none;
+}
+
+.navbar__right {
+    display: flex;
+}
+
+.navbar__right .MuiSvgIcon-root:hover {
+    color: #2e81f4;
+}
+
+.navbar__info {
+    display: flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0;
+    padding-right: 15px;
+    margin-right: 10px;
+    width: fit-content;
+}
+
+.navbar__info:hover {
+    background-color: #eff2f5;
+    cursor: pointer;
+}
+
+.navbar__info > h4 {
+    margin-left: 10px;
+}
+
+/* DROPDOWN MENU */
+.dropdown__menu {
+    width: 345px;
+    height: fit-content;
+    position: absolute;
+    right: 30px;
+    top: 80px;
+    padding: 12px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    color: #050505;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.dropdown__menu .MuiSvgIcon-root {
+    margin-right: 10px;
+    padding: 8px;
+    background-color: #e4e6eb;
+    border-radius: 50%;
+}
+
+.dropdown__menu hr {
+    margin: 8px 0;
+    border-color: rgba(211, 211, 211, 0.226);
+}
+
+.dropdown__header {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.dropdown__header:hover {
+    cursor: pointer;
+    background-color: #eff2f5;
+    border-radius: 8px;
+}
+
+.dropdown__avatar {
+    height: 60px;
+    width: 60px;
+    margin-right: 15px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+}
+
+.dropdown__avatar img {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.dropdown__name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 20px;
+    width: 100%;
+}
+
+.dropdown__name h4 {
+    font-size: 17px;
+}
+
+.dropdown__name p {
+    color: #65676B;
+}
+
+.dropdown__github,
+.dropdown__option {
+    padding: 10px;
+    height: 52px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown__option:hover,
+.dropdown__github:hover {
+    cursor: pointer;
+    background-color: #eff2f5;
+    border-radius: 8px;
+}
+
+
