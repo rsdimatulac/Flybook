@@ -4,9 +4,10 @@ const context = createContext();
 
 export const ModalContext = (props) => {
     const [showSignUp, setShowSignUp] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
 
     return (
-        <context.Provider value={{showSignUp, setShowSignUp}}>
+        <context.Provider value={{ showSignUp, setShowSignUp, showDropdown, setShowDropdown}}>
             {props.children}
         </context.Provider>
     )
