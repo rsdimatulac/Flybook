@@ -10,17 +10,30 @@
 
 .createPost__top {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     border-bottom: 1px solid #eff2f5;
     padding: 15px;
 }
 
-.createPost__top form {
+.createPost__top > div {
+    display: flex;
+    align-items: center;
+}
+
+.createPost__top > p {
+    font-style: italic;
+    padding: 5px 50px 0px;
+    font-size: small;
+    color: gray;
+}
+
+.createPost__top > div > form {
     flex: 1;
     display: flex;
 }
 
-.createPost__top > form > input {
+.createPost__top > div > form > input {
     outline-width: 0;
     border: none;
     padding: 10px 20px;

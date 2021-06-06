@@ -6,7 +6,7 @@ from .friend import friends
 from .friend_request import friend_requests
 from .post import Post
 
-today = datetime.datetime.now()
+today = datetime.datetime.utcnow()
 
 
 class User(db.Model, UserMixin):

@@ -24,7 +24,7 @@ const CreatePost = ({ user }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const post = await dispatch(createPost(postBody, postURL, wallId));
+        await dispatch(createPost(postBody, postURL, wallId));
         // if (post?.errors) {
         //     setErrors(post?.errors)
         // };
@@ -35,24 +35,27 @@ const CreatePost = ({ user }) => {
     return (
         <div className="create__post">
             <div className="createPost__top">
-                <Avatar src={user?.profile_src} />
-                <form onSubmit={handleSubmit} >
-                    <input
-                        className="createPost__body"
-                        value={postBody}
-                        onChange={(e) => setPostBody(e.target.value)}
-                        type="text"
-                        required
-                        placeholder={`What's on your mind, ${user?.firstname}?`}
-                    />
-                    <input
-                        type="text"
-                        value={postURL}
-                        onChange={(e) => setPostURL(e.target.value)}
-                        placeholder="image URL (Optional)"
-                    />
-                    <button type="submit" style={{ display: "none" }}>Hidden Submit</button>
-                </form>
+                <div>
+                    <Avatar src={user?.profile_src} />
+                    <form onSubmit={handleSubmit} >
+                        <input
+                            className="createPost__body"
+                            value={postBody}
+                            onChange={(e) => setPostBody(e.target.value)}
+                            type="text"
+                            required
+                            placeholder={`What's on your mind, ${user?.firstname}?`}
+                        />
+                        <input
+                            type="text"
+                            value={postURL}
+                            onChange={(e) => setPostURL(e.target.value)}
+                            placeholder="image URL (Optional)"
+                        />
+                        <button type="submit" style={{ display: "none" }}>Hidden Submit</button>
+                    </form>
+                </div>
+                <p>Press Enter key to create your post.</p>
                 {/* <div className="errors">
                     {errors?.map(error => (<div className="errors__div" key={error}>・{error}</div>))}
                 </div> */}

@@ -3,6 +3,7 @@
     margin-top: 15px;
     border-radius: 15px;
     background-color: white;
+    position: relative;
     box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
 }
 
@@ -11,6 +12,62 @@
     position: relative;
     align-items: center;
     padding: 15px;
+}
+
+.post__optionIcon {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    /* padding: 8px; */
+    border-radius: 50%;
+    color: gray;
+    z-index: 50;
+}
+
+#options__icon {
+    padding: 8px;
+    font-size: 20px;
+}
+
+#options__icon:hover {
+    cursor: pointer;
+    border-radius: 50%;
+    /* padding: 8px; */
+    background-color: #eff2f5;
+}
+
+/* OPTIONS DROPDOWN */
+
+.options__dropdown {
+    z-index: 100;
+    background-color: white;
+    position: absolute;
+    top: 45px;
+    right: 15px;
+    height: fit-content;
+    width: 30%;
+    padding: 10px 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.dropdown__editDelete {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    padding: 5px 0;
+}
+
+.dropdown__editDelete > .MuiSvgIcon-root {
+    margin-right: 10px;
+}
+
+.dropdown__editDelete:hover {
+    cursor: pointer;
+    background-color: #eff2f5;
+    border-radius: 8px;
 }
 
 .post__avatar {
@@ -70,4 +127,55 @@
 .post__option:hover {
     background-color: #eff2f5;
     border-radius: 10px;
+}
+
+/* EDIT INPUT BOX */
+
+.editPost__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid #eff2f5;
+    padding: 0 15px 10px 15px;
+}
+
+.editPost__box p {
+    font-style: italic;
+    padding: 5px 15px;
+    font-size: small;
+    color: gray;
+}
+
+.editPost__box form {
+    flex: 1;
+    display: flex;
+}
+
+.editPost__box > form > input {
+    outline-width: 0;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border-radius: 999px;
+    background-color: #eff2f5;
+    font-size: 15px;
+}
+
+.editPost__box > form > textarea {
+    outline-width: 0;
+    border: none;
+    padding: 20px;
+    margin: 0 10px;
+    border-radius: 30px;
+    background-color: #eff2f5;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.editPost__body {
+    flex: 1;
+}
+
+.editPost__box > form > textarea::-webkit-scrollbar {
+    display: none;
 }

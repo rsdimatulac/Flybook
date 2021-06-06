@@ -10,9 +10,9 @@ friend_requests = db.Table(
         "receiver_id", db.Integer, db.ForeignKey("users.id"), primary_key=True
     ),
     db.Column(
-        'created_at', db.DateTime, nullable=False, default=datetime.datetime.now()
+        'created_at', db.DateTime, nullable=False, default=datetime.datetime.utcnow()
     ),
     db.Column(
-        'updated_at', db.DateTime, nullable=False, default=datetime.datetime.now()
+        'updated_at', db.DateTime, nullable=False, default=datetime.datetime.utcnow()
     )
 )

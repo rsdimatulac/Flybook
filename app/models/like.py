@@ -1,7 +1,7 @@
 import datetime
 from .db import db
 
-today = datetime.datetime.now()
+today = datetime.datetime.utcnow()
 
 
 class Like(db.Model):

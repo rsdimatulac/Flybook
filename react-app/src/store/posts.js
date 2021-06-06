@@ -46,7 +46,9 @@ export const createPost = (body, photo_src, wall_id) => async (dispatch) => {
             body: JSON.stringify({
                 body,
                 photo_src,
-                wall_id
+                wall_id,
+                updated_at: new Date(),
+                created_at: new Date()
             })
         });
         if (!response.ok) throw response;
@@ -69,7 +71,8 @@ export const editPost = (post_id, body, photo_src) => async (dispatch) => {
             body: JSON.stringify({
                 body,
                 photo_src,
-                post_id
+                post_id,
+                updated_at: new Date()
             })
         });
         if (!response.ok) throw response;

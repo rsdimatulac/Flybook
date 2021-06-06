@@ -36,20 +36,23 @@ def posts():
     # return {post.id: post.to_dict() for post in posts}
 
 
-today = datetime.datetime.now()
-
 @post_routes.route('/', methods=['POST'])  # POST /api/posts/
 def new_post():
 
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     wall_id = request.get_json()['wall_id']
+    updated_at = request.get_json()['updated_at']
+    created_at = request.get_json()['created_at']
+    
     if form.validate_on_submit():
         post = Post(
             user_id=current_user.id,
             wall_id=wall_id,
             body=form.data['body'],
             photo_src=form.data['photo_src'],
+            created_at=created_at,
+            updated_at=updated_at
         )
         db.session.add(post)
         db.session.commit()
@@ -63,11 +66,11 @@ def edit_post(post_id):
     post_to_edit = Post.query.get(post_id)
     body = request.get_json()['body']
     photo_src = request.get_json()['photo_src']
+    updated_at = request.get_json()['updated_at']
 
     post_to_edit.body = body
     post_to_edit.photo_src = photo_src
-    post_to_edit.updated_at = today
-    db.session.commit()
+    post_to_edit.updated_at = updated_at
     return post_to_edit.to_dict()
 
 

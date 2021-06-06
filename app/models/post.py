@@ -2,7 +2,7 @@ import datetime
 from .db import db
 # from app.models import db, User
 
-today = datetime.datetime.now()
+today = datetime.datetime.utcnow()
 
 
 class Post(db.Model):

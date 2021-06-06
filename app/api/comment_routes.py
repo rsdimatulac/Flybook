@@ -42,7 +42,7 @@ def new_comment():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-today = datetime.datetime.now()
+today = datetime.datetime.utcnow()
 
 @comment_routes.route('/<int:comment_id>', methods=['PATCH']) # PATCH /api/comments/:comment_id
 def edit_comment(comment_id):
