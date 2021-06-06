@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SearchIcon from '@material-ui/icons/Search';
 import HomeIcon from '@material-ui/icons/Home';
 import OndemandVideoIcon from '@material-ui/icons/OndemandVideo';
@@ -15,12 +15,18 @@ import Brightness2Icon from '@material-ui/icons/Brightness2';
 import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import useConsumeContext from "../context/ModalContext";
+import Search from "./Search";
+import { getAllUsers } from "../store/users";
 import { logout } from "../store/session";
 import "./NavBar.css";
 
 
 const NavBar = ({ user }) => {
+  const users = useSelector(state => state.users);
   const { showDropdown, setShowDropdown } = useConsumeContext();
+  const [searchInput, setSearchInput] = useState("")
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearch, setShowSearch] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -34,6 +40,26 @@ const NavBar = ({ user }) => {
     history.push(`/users/${user?.id}`);
   };
 
+  const handleSearch = (e) => {
+    if (e.target.value === "") {
+      setSearchInput("");
+      setSearchResults([]);
+    };
+
+    if (e.target.value.length > 0) { 
+      let filteredResults = Object.values(users).filter(user => 
+        user['firstname']?.toLowerCase().includes(e.target.value.toLowerCase())
+        || user['lastname']?.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      setSearchInput(e.target.value);
+      setSearchResults(filteredResults);
+    };
+  };
+
+  useEffect(() => {
+    dispatch(getAllUsers);
+  }, [dispatch]);
+
   return (
     <nav className="navbar">
       <div className="navbar__left">
@@ -42,14 +68,22 @@ const NavBar = ({ user }) => {
             <img src="https://theflybook.s3.amazonaws.com/facebook_logo.png" alt="" />
           </div>
         </NavLink>
-        <div className="navbar__search">
+        {/* SEARCH INPUT */}
+        <div className="navbar__search" onClick={() => setShowSearch(prevState => !prevState)}>
           <SearchIcon />
           <input
             type="text"
+            name="search"
+            autoComplete="off"
             placeholder="Search Flybook"
+            onChange={handleSearch}
+            value={searchInput}
           />
         </div>
       </div>
+      {/* SEARCH RESULTS HERE */}
+      {showSearch ? <Search setShowSearch={setShowSearch} searchResults={searchResults} setSearchResults={setSearchResults} setSearchInput={setSearchInput} currentUser={user} /> : null}
+
       <div className="navbar__middle">
         <div className="navbar__option navbar__option--active">
           <HomeIcon fontSize="large" />
@@ -102,23 +136,23 @@ const NavBar = ({ user }) => {
           <hr />
           <a href="https://github.com/rsdimatulac/Flybook" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="dropdown__github">
-              <GitHubIcon/>
+              <GitHubIcon />
               <p>GitHub</p>
             </div>
           </a>
           <hr />
           <div className="dropdown__option">
-            <Brightness2Icon/>
+            <Brightness2Icon />
             <p>Dark mode</p>
           </div>
           <a href="https://rsdimatulac.github.io/" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="dropdown__option">
-              <InfoIcon/>
+              <InfoIcon />
               <p>About the developer</p>
             </div>
           </a>
           <div className="dropdown__option" onClick={onLogout}>
-            <ExitToAppIcon/>
+            <ExitToAppIcon />
             <p>Logout</p>
           </div>
         </div>)}
