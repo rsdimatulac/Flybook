@@ -116,6 +116,7 @@
 
 /* DROPDOWN MENU */
 .dropdown__menu {
+    background-color: white;
     width: 345px;
     height: fit-content;
     position: absolute;
