@@ -1,0 +1,86 @@
+/* PROFILE PHOTO MODAL AND BUTTON */
+
+.profile__add {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #E4E6EB;
+}
+
+.profile__add:hover {
+    cursor: pointer;
+    background-color: #cfd2d8;
+}
+
+.photo__modal {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #050505;
+}
+
+.photo__modal > div {
+    font-size: 20px;
+    height: 49px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+}
+
+.photo__modal > form > p {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #65676B;
+}
+
+.photo__textarea {
+    margin-top: 15px;
+    outline-width: 0;
+    width: 360px;
+    border: 1px solid #ccd0d5;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #eff2f5;
+    font-size: 15px;
+    font-family: inherit;
+    text-align: center;
+}
+
+.photo__textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.photo__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.photo__buttons button,
+.photo__buttons div {
+    border: none;
+    margin-left: 6px;
+    border-radius: 5px;
+    padding: 10px; 
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #eff2f5;
+}
+
+.photo__buttons button:hover,
+.photo__buttons div:hover {
+    cursor: pointer;
+    background-color: #d5d8dbab;
+}

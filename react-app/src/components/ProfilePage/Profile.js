@@ -1,30 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import EditIcon from '@material-ui/icons/Edit';
-// import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import { useSelector, useDispatch } from "react-redux";
 import { editUserProfile, getUser } from "../../store/user";
+import useConsumeContext from "../../context/ModalContext";
+import { Modal } from "../../context/Modal";
+import "./ProfileModals.css";
 import "./Profile.css";
 
 
 const Profile = ({ currentUser }) => {
+    const { showPhotoModal, setShowPhotoModal } = useConsumeContext();
     const { userId } = useParams();
     const user = useSelector(state => state.user);
     const theUser = user[userId];
     const [showBioInput, setShowBioInput] = useState(false);
+    const [showPhotoInput, setShowPhotoInput] = useState(false);
+    const [newPhoto, setNewPhoto] = useState("");
     const [newBio, setNewBio] = useState("");
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getUser(Number(userId)))
-    }, [dispatch, userId])
+        dispatch(getUser(Number(userId)));
+    }, [dispatch, userId]);
 
+    const handleEditPhoto = (photoSrc) => () => {
+        setShowPhotoModal(prevState => !prevState);
+        setNewPhoto(photoSrc ? photoSrc : "");
+    };
+
+    const handlePhotoSubmit = async (e) => {
+        e.preventDefault();
+        console.log("NEWPHOTO", newPhoto)
+        await dispatch(editUserProfile(currentUser?.id, { type: "profile_src", data: newPhoto}));
+        setShowPhotoModal(false);
+        setNewBio("");
+    }
+
+    const handleEditCover = (coverSrc) => () => {
+
+    }
+
+    const handleCoverSubmit = async (e) => {
+
+    }
 
     const handleEditBio = (bio) => () => {
-        
         setShowBioInput(true);
         setNewBio(bio ? bio : "");
-    }
+    };
 
     const handleBioSubmit = async (e) => {
         e.preventDefault();
@@ -40,8 +65,23 @@ const Profile = ({ currentUser }) => {
                 <div className="cover__photo" style={{ backgroundImage: theUser ? `url(${theUser?.cover_src})` : null }}></div>
                 <div className="profile__avatar">
                     <img src={theUser?.profile_src} alt="" />
+                    {currentUser.id === Number(userId) && <div className="profile__add" onClick={handleEditPhoto(theUser?.profile_src)}><CameraAltIcon /></div>}
                 </div>
             </div>
+            {showPhotoModal &&
+                <Modal onClose={() => setShowPhotoModal(prevState => !prevState)}>
+                    <div className="photo__modal">
+                        <div><h1>Update Profile Photo</h1></div>
+                        <form onSubmit={handlePhotoSubmit}>
+                            <textarea className="photo__textarea" value={newPhoto} onChange={(e) => setNewPhoto(e.target.value)} />
+                            <p>{501 - newPhoto.length} characters remaining</p>
+                            <div className="photo__buttons">
+                                <div onClick={() => setShowPhotoModal(prevState => !prevState)}>Cancel</div>
+                                <button disabled={(501 - newPhoto.length) < 0 ? true : false} type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </Modal>}
             <div className="profile__name">
                 <h1>{theUser?.firstname} {theUser?.lastname}</h1>
                 {showBioInput

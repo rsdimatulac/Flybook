@@ -14,7 +14,6 @@ import "./reset.css";
 
 function App() {
   const user = useSelector(state => state.session.user);
-  // const users = useSelector(state => state.users);
 
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();

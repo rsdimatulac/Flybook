@@ -16,6 +16,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import useConsumeContext from "../context/ModalContext";
 import Search from "./Search";
+import { getUser } from "../store/user"
 import { getAllUsers } from "../store/users";
 import { logout } from "../store/session";
 import "./NavBar.css";
@@ -23,6 +24,8 @@ import "./NavBar.css";
 
 const NavBar = ({ user }) => {
   const users = useSelector(state => state.users);
+  const stateUser = useSelector(state => state.user);
+  const theUser = stateUser[user.id]
   const { showDropdown, setShowDropdown, searchInput, setSearchInput, setSearchResults, showSearch, setShowSearch } = useConsumeContext();
 
   const history = useHistory();
@@ -57,7 +60,8 @@ const NavBar = ({ user }) => {
 
   useEffect(() => {
     dispatch(getAllUsers());
-  }, [dispatch]);
+    dispatch(getUser(user?.id))
+  }, [dispatch, user.id]);
 
   return (
     <nav className="navbar">
@@ -108,8 +112,8 @@ const NavBar = ({ user }) => {
       </div>
       <div className="navbar__right">
         <div className="navbar__info" onClick={goToProfile}>
-          <Avatar src={user?.profile_src} />
-          <h4>{user?.firstname} {user?.lastname}</h4>
+          <Avatar src={theUser?.profile_src} />
+          <h4>{theUser?.firstname} {theUser?.lastname}</h4>
         </div>
         <IconButton style={{ backgroundColor: "#eff2f5", borderRadius: "50%", padding: 12, marginRight: 10 }}>
           <AddIcon />
@@ -126,10 +130,10 @@ const NavBar = ({ user }) => {
         (<div className="dropdown__menu">
           <div className="dropdown__header">
             <div className="dropdown__avatar">
-              <img src={user?.profile_src} alt="" />
+              <img src={theUser?.profile_src} alt="" />
             </div>
             <div className="dropdown__name" onClick={goToProfile}>
-              <h4>{user?.firstname} {user?.lastname}</h4>
+              <h4>{theUser?.firstname} {theUser?.lastname}</h4>
               <p>See your profile</p>
             </div>
           </div>

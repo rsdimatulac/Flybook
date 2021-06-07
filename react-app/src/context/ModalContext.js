@@ -10,6 +10,7 @@ export const ModalContext = (props) => {
     const [searchInput, setSearchInput] = useState("")
     const [searchResults, setSearchResults] = useState([]);
     const [showSearch, setShowSearch] = useState(false);
+    const [showPhotoModal, setShowPhotoModal] = useState(false);
 
     return (
         <context.Provider value={{ 
@@ -19,7 +20,8 @@ export const ModalContext = (props) => {
             showEditInput, setShowEditInput,
             searchInput, setSearchInput,
             searchResults, setSearchResults,
-            showSearch, setShowSearch
+            showSearch, setShowSearch,
+            showPhotoModal, setShowPhotoModal
         }}>
             {props.children}
         </context.Provider>
