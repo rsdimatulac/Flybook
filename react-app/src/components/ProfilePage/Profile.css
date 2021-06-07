@@ -1,6 +1,7 @@
 .profile {
-    /* background-color: #f1f2f5; */
     color: #050505;
+    /* background-color: #f1f2f5; */
+    /* height: 100vw; */
 }
 
 .profile__top {
@@ -25,7 +26,7 @@
 .profile__avatar {
     position: absolute;
     bottom: 0px;
-    z-index: 100;
+    /* z-index: 100; */
 }
 
 .profile__avatar img {
@@ -116,7 +117,77 @@
 .bio__buttons button:hover,
 .bio__buttons div:hover {
     cursor: pointer;
-    background-color: #d5d8db;
+    background-color: #d5d8dbab;
 }
 
+.profile__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 260px;
+    height: 60px;
+    border-bottom: 2px solid rgba(211, 211, 211, 0.733);    
+}
 
+.profileNav__links {
+    display: flex;
+    align-items: center;
+    color: #65676B;
+    font-weight: 600;
+}
+
+.profileNav__links div {
+    margin-right: 20px;
+    padding: 16px 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.profileNav__links div:hover {
+    color: #2e81f4;
+    cursor: pointer;
+    padding-bottom: 12px;
+    border-bottom: 4px solid #2e81f4;
+    background-color: #eff2f5;
+}
+
+.profileNav__edit {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    padding: 0px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    background-color: #eff2f5;
+}
+
+.profileNav__edit:hover {
+    cursor: pointer;
+    background-color: #d5d8dbab;
+}
+
+.profileNav__edit > .MuiSvgIcon-root {
+    margin-right: 10px;
+}
+
+.profile__bottom {
+    background-color: #f1f2f5;
+    height: 50vw;
+    padding: 0 260px;
+    display: grid;
+    grid-template-columns: 0.80fr 1fr;
+    padding-top: 13px;
+    grid-column-gap: 15px;
+}
+
+.bottom__left {
+    border-radius: 8px;
+    background-color: lightcoral;
+}
+
+.bottom__right {
+    border-radius: 8px;
+
+    background-color: lightskyblue;
+}
