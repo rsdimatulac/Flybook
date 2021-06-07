@@ -18,7 +18,7 @@
     background-color: #cfd2d8;
 }
 
-.photo__modal {
+.photo__modal, .cover__modal {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@
     color: #050505;
 }
 
-.photo__modal > div {
+.photo__modal > div, .cover__modal > div {
     font-size: 20px;
     height: 49px;
     box-sizing: border-box;
@@ -38,13 +38,14 @@
     border-bottom: 1px solid lightgray;
 }
 
-.photo__modal > form > p {
+.photo__modal > form > p,
+.cover__modal > form > p {
     margin-top: 5px;
     font-size: 13px;
     color: #65676B;
 }
 
-.photo__textarea {
+.photo__textarea, .cover__textarea {
     margin-top: 15px;
     outline-width: 0;
     width: 360px;
@@ -57,11 +58,13 @@
     text-align: center;
 }
 
-.photo__textarea::-webkit-scrollbar {
+.photo__textarea::-webkit-scrollbar,
+.cover__textarea::-webkit-scrollbar {
     display: none;
 }
 
-.photo__buttons {
+.photo__buttons,
+.cover__buttons {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,7 +72,9 @@
 }
 
 .photo__buttons button,
-.photo__buttons div {
+.photo__buttons div,
+.cover__buttons button,
+.cover__buttons div {
     border: none;
     margin-left: 6px;
     border-radius: 5px;
@@ -80,7 +85,34 @@
 }
 
 .photo__buttons button:hover,
-.photo__buttons div:hover {
+.photo__buttons div:hover,
+.cover__buttons button:hover,
+.cover__buttons div:hover {
     cursor: pointer;
     background-color: #d5d8dbab;
+}
+
+
+/* COVER PHOTO ADD AND MODAL */
+
+.cover__add {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E4E6EB;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 5px;
+    padding: 10px 12px;
+    font-weight: 600;
+}
+
+.cover__add > .MuiSvgIcon-root {
+    margin-right: 10px;
+}
+
+.cover__add:hover {
+    cursor: pointer;
+    background-color: #cfd2d8;
 }

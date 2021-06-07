@@ -11,12 +11,12 @@ import "./Profile.css";
 
 
 const Profile = ({ currentUser }) => {
-    const { showPhotoModal, setShowPhotoModal } = useConsumeContext();
+    const { showPhotoModal, setShowPhotoModal, showCoverModal, setShowCoverModal } = useConsumeContext();
     const { userId } = useParams();
     const user = useSelector(state => state.user);
     const theUser = user[userId];
     const [showBioInput, setShowBioInput] = useState(false);
-    const [showPhotoInput, setShowPhotoInput] = useState(false);
+    const [newCover, setNewCover] = useState("");
     const [newPhoto, setNewPhoto] = useState("");
     const [newBio, setNewBio] = useState("");
     const dispatch = useDispatch();
@@ -32,18 +32,22 @@ const Profile = ({ currentUser }) => {
 
     const handlePhotoSubmit = async (e) => {
         e.preventDefault();
-        console.log("NEWPHOTO", newPhoto)
-        await dispatch(editUserProfile(currentUser?.id, { type: "profile_src", data: newPhoto}));
+        await dispatch(editUserProfile(currentUser?.id, { type: "profile_src", data: newPhoto }));
         setShowPhotoModal(false);
         setNewBio("");
     }
 
     const handleEditCover = (coverSrc) => () => {
-
+        setShowCoverModal(prevState => !prevState);
+        setNewCover(coverSrc ? coverSrc : "");
     }
 
     const handleCoverSubmit = async (e) => {
+        e.preventDefault();
+        await dispatch(editUserProfile(currentUser?.id, { type: "cover_src", data: newCover }));
 
+        setShowCoverModal(false);
+        setNewCover("");
     }
 
     const handleEditBio = (bio) => () => {
@@ -62,7 +66,13 @@ const Profile = ({ currentUser }) => {
     return (
         <div className="profile">
             <div className="profile__top">
-                <div className="cover__photo" style={{ backgroundImage: theUser ? `url(${theUser?.cover_src})` : null }}></div>
+                <div className="cover__photo" style={{ backgroundImage: theUser ? `url(${theUser?.cover_src})` : `url(https://theflybook.s3.amazonaws.com/cover.png)` }}>
+                    {currentUser.id === Number(userId)
+                        && <div className="cover__add" onClick={handleEditCover(theUser?.cover_src)}>
+                            <CameraAltIcon />
+                            <p>Edit Cover Photo</p>
+                        </div>}
+                </div>
                 <div className="profile__avatar">
                     <img src={theUser?.profile_src} alt="" />
                     {currentUser.id === Number(userId) && <div className="profile__add" onClick={handleEditPhoto(theUser?.profile_src)}><CameraAltIcon /></div>}
@@ -81,7 +91,23 @@ const Profile = ({ currentUser }) => {
                             </div>
                         </form>
                     </div>
-                </Modal>}
+                </Modal>
+            }
+            {showCoverModal &&
+                <Modal onClose={() => setShowCoverModal(prevState => !prevState)}>
+                    <div className="cover__modal">
+                        <div><h1>Update Cover Photo</h1></div>
+                        <form onSubmit={handleCoverSubmit}>
+                            <textarea className="cover__textarea" value={newCover} onChange={(e) => setNewCover(e.target.value)} />
+                            <p>{501 - newCover.length} characters remaining</p>
+                            <div className="cover__buttons">
+                                <div onClick={() => setShowCoverModal(prevState => !prevState)}>Cancel</div>
+                                <button disabled={(501 - newCover.length) < 0 ? true : false} type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </Modal>
+            }
             <div className="profile__name">
                 <h1>{theUser?.firstname} {theUser?.lastname}</h1>
                 {showBioInput

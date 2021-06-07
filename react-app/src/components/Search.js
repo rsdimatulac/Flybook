@@ -17,7 +17,6 @@ const Search = ({currentUser}) => {
             setSearchInput("");
             setShowSearch(false);
         } // TEST
-
     };
 
     return (

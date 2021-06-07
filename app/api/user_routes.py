@@ -22,15 +22,10 @@ def user(id):
 # If birds can glide for long periods of time, then… why can't I?
 @user_routes.route('/<int:id>', methods=['PATCH'])  # PATCH /api/users/:id
 def edit_profile(id):
-
-    # MIGHT NEED TO ACCESS PROFILE FORM HERE
     
-    edit_user = User.query.get(id)
-    print("!!!!!!!!!!", edit_user, id)
-    # [{ type: "bio", data: "Hello" }, {}]
+    edit_user = User.query.get(id) # [{ type: "bio", data: "Hello" }, {}]
     updates = request.get_json()
-    print("!!!!!!!!!UPDATES", updates)
-    # [{'type': 'bio', 'data': "If birds can glide for long periods of time, then… why can't I? TRUEEEEE"}]
+    
     for update in updates:
         type, data = (update['type'], update['data'])
         print("!!!!!!!type", type)
