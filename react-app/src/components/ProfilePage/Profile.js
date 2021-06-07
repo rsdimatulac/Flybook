@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import EditIcon from '@material-ui/icons/Edit';
 // import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import { useSelector, useDispatch } from "react-redux";
-import { getAllUsers } from "../../store/users";
 import { editUserProfile, getUser } from "../../store/user";
 import "./Profile.css";
 
@@ -16,14 +15,13 @@ const Profile = ({ currentUser }) => {
     const [newBio, setNewBio] = useState("");
     const dispatch = useDispatch();
 
-
     useEffect(() => {
-        dispatch(getAllUsers());
         dispatch(getUser(Number(userId)))
     }, [dispatch, userId])
 
 
     const handleEditBio = (bio) => () => {
+        
         setShowBioInput(true);
         setNewBio(bio ? bio : "");
     }
@@ -39,7 +37,7 @@ const Profile = ({ currentUser }) => {
     return (
         <div className="profile">
             <div className="profile__top">
-                <div className="cover__photo" style={{ backgroundImage: `url(${theUser?.cover_src})` }}></div>
+                <div className="cover__photo" style={{ backgroundImage: theUser ? `url(${theUser?.cover_src})` : null }}></div>
                 <div className="profile__avatar">
                     <img src={theUser?.profile_src} alt="" />
                 </div>
