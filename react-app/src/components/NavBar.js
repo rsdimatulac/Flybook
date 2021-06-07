@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SearchIcon from '@material-ui/icons/Search';
@@ -23,10 +23,8 @@ import "./NavBar.css";
 
 const NavBar = ({ user }) => {
   const users = useSelector(state => state.users);
-  const { showDropdown, setShowDropdown } = useConsumeContext();
-  const [searchInput, setSearchInput] = useState("")
-  const [searchResults, setSearchResults] = useState([]);
-  const [showSearch, setShowSearch] = useState(false);
+  const { showDropdown, setShowDropdown, searchInput, setSearchInput, setSearchResults, showSearch, setShowSearch } = useConsumeContext();
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -36,6 +34,7 @@ const NavBar = ({ user }) => {
   };
 
   const goToProfile = () => {
+
     setShowDropdown(false);
     history.push(`/users/${user?.id}`);
   };
@@ -57,7 +56,7 @@ const NavBar = ({ user }) => {
   };
 
   useEffect(() => {
-    dispatch(getAllUsers);
+    dispatch(getAllUsers());
   }, [dispatch]);
 
   return (
@@ -82,7 +81,7 @@ const NavBar = ({ user }) => {
         </div>
       </div>
       {/* SEARCH RESULTS HERE */}
-      {showSearch ? <Search setShowSearch={setShowSearch} searchResults={searchResults} setSearchResults={setSearchResults} setSearchInput={setSearchInput} currentUser={user} /> : null}
+      {showSearch ? <Search currentUser={user} /> : null}
 
       <div className="navbar__middle">
         <div className="navbar__option navbar__option--active">
@@ -122,6 +121,7 @@ const NavBar = ({ user }) => {
           <ExpandMoreIcon />
         </IconButton>
       </div>
+      {/* DROPDOWN */}
       {showDropdown &&
         (<div className="dropdown__menu">
           <div className="dropdown__header">

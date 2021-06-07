@@ -107,9 +107,9 @@ const Feed = ({ user }) => {
                             <h3>{`${users[post.user_id]?.firstname} ${users[post?.user_id]?.lastname}`}</h3>
                             <p>{format(new Date(post?.updated_at), "MMM d YYY, hh:mm a")}</p>
                         </div>
+                        {/* It will only show when it's the user's post */}
                         {user?.id === post.user_id && 
                         <div className={`${post?.id} post__optionIcon`} onClick={handleClick}>
-                            {/* It will only show when it's the user's post */}
                             <Options id="options__icon"/>
                         </div>}
                     </div>

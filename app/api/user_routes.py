@@ -13,7 +13,7 @@ def users():
 
 
 @user_routes.route('/<int:id>') # GET /api/users/:id
-@login_required
+# @login_required
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
@@ -26,16 +26,21 @@ def edit_profile(id):
     # MIGHT NEED TO ACCESS PROFILE FORM HERE
     
     edit_user = User.query.get(id)
+    print("!!!!!!!!!!", edit_user, id)
     # [{ type: "bio", data: "Hello" }, {}]
     updates = request.get_json()
-
+    print("!!!!!!!!!UPDATES", updates)
+    # [{'type': 'bio', 'data': "If birds can glide for long periods of time, then… why can't I? TRUEEEEE"}]
     for update in updates:
         type, data = (update['type'], update['data'])
+        print("!!!!!!!type", type)
+        print("!!!!!!!data", data)
         if type == "profile_src":
             edit_user.profile_src = data
         elif type == "cover_src":
             edit_user.cover_src = data
         elif type == "bio":
+            print("????????INSIDE BIO")
             edit_user.bio = data
         elif type == "location":
             edit_user.location = data
@@ -43,5 +48,5 @@ def edit_profile(id):
             edit_user.school = data
         elif type == "work":
             edit_user.work = data
-        db.session.commit()
+    db.session.commit()
     return edit_user.to_dict()

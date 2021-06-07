@@ -8,13 +8,14 @@ import ErrorPage from "./components/ErrorPage/Error";
 import NewsFeedPage from "./components/NewsFeedPage/NewsFeed";
 import ProfilePage from "./components/ProfilePage/Profile";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import User from "./components/User";
 import { authenticate } from "./store/session";
 import "./index.css";
 import "./reset.css";
 
 function App() {
-  const user = useSelector(state => state.session.user)
+  const user = useSelector(state => state.session.user);
+  // const users = useSelector(state => state.users);
+
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -40,10 +41,9 @@ function App() {
           <NavBar user={user}/>
           <NewsFeedPage user={user}/>
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact>
+        <ProtectedRoute path="/users/:userId(\d+)" exact>
           <NavBar user={user}/>
-          <ProfilePage/>
-          <User />
+          <ProfilePage currentUser={user}/>
         </ProtectedRoute>
         <Route path="*">
           <ErrorPage />

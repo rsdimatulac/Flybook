@@ -1,0 +1,122 @@
+.profile {
+    /* background-color: #f1f2f5; */
+    color: #050505;
+}
+
+.profile__top {
+    height: 420px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.cover__photo {
+    height: 400px;
+    width: 70%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.profile__avatar {
+    position: absolute;
+    bottom: 0px;
+    z-index: 100;
+}
+
+.profile__avatar img {
+    height: 168px;
+    width: 168px;
+    border-radius: 50%;
+    border: 5px solid white;
+}
+
+.profile__name {
+    /* background-color: lightskyblue; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    margin: 0 260px;
+    border-bottom: 1px solid lightgray;
+}
+
+.profile__name h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.profile__name h2 {
+    font-weight: normal;
+    color: #65676B;
+    font-size: 17px;
+}
+
+.editBio__button {
+    color: #2e81f4;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.editBio__button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.profile__name form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.profile__name form p {
+    margin-top: 5px;
+    font-size: 13px;
+    color: #65676B;
+}
+
+.bio__textarea {
+    outline-width: 0;
+    width: 350px;
+    border: 1px solid #ccd0d5;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #eff2f5;
+    font-size: 15px;
+    font-family: inherit;
+    text-align: center;
+}
+
+.bio__textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.bio__buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.bio__buttons button,
+.bio__buttons div {
+    border: none;
+    margin-left: 6px;
+    border-radius: 5px;
+    padding: 10px; 
+    font-weight: 600;
+    font-size: 15px;
+    background-color: #eff2f5;
+}
+
+.bio__buttons button:hover,
+.bio__buttons div:hover {
+    cursor: pointer;
+    background-color: #d5d8db;
+}
+
+
