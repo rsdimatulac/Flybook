@@ -28,14 +28,11 @@ def edit_profile(id):
     
     for update in updates:
         type, data = (update['type'], update['data'])
-        print("!!!!!!!type", type)
-        print("!!!!!!!data", data)
         if type == "profile_src":
             edit_user.profile_src = data
         elif type == "cover_src":
             edit_user.cover_src = data
         elif type == "bio":
-            print("????????INSIDE BIO")
             edit_user.bio = data
         elif type == "location":
             edit_user.location = data
@@ -43,5 +40,7 @@ def edit_profile(id):
             edit_user.school = data
         elif type == "work":
             edit_user.work = data
+        elif type == "birthday":
+            edit_user.birthday = data
     db.session.commit()
     return edit_user.to_dict()

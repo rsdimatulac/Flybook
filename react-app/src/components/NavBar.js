@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SearchIcon from '@material-ui/icons/Search';
@@ -26,7 +26,13 @@ const NavBar = ({ user }) => {
   const users = useSelector(state => state.users);
   const stateUser = useSelector(state => state.user);
   const theUser = stateUser[user.id]
-  const { setShowPhotoModal, setShowCoverModal, showDropdown, setShowDropdown, searchInput, setSearchInput, setSearchResults, showSearch, setShowSearch } = useConsumeContext();
+  const { setShowEditProfile, setShowPhotoModal, 
+    setShowCoverModal, showDropdown, 
+    setShowDropdown, searchInput, 
+    setSearchInput, setSearchResults, 
+    showSearch, setShowSearch,
+    setShowEditDeleteOptions, setShowEditInput } = useConsumeContext();
+  const [homeActive, setHomeActive] = useState("");
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -36,16 +42,27 @@ const NavBar = ({ user }) => {
     setShowDropdown(false);
     setShowPhotoModal(false);
     setShowCoverModal(false);
+    setShowEditProfile(false);
+    setShowSearch(false);
+    setShowEditDeleteOptions(false);
+    setShowEditInput(false);
     setSearchResults([]);
     setSearchInput("");
-    setShowSearch(false);
   };
 
   const goToProfile = () => {
-
     setShowDropdown(false);
     history.push(`/users/${user?.id}`);
+    setHomeActive("");
   };
+  
+  useEffect(() => {
+    if (window.location.pathname === "/feed") {
+      setHomeActive("navbar__option--active")
+    } else {
+      setHomeActive("")
+    }
+  }, [window.location.pathname])
 
   const handleSearch = (e) => {
     if (e.target.value === "") {
@@ -67,6 +84,7 @@ const NavBar = ({ user }) => {
     dispatch(getAllUsers());
     dispatch(getUser(user?.id))
   }, [dispatch, user.id]);
+
 
   return (
     <nav className="navbar">
@@ -93,7 +111,7 @@ const NavBar = ({ user }) => {
       {showSearch ? <Search currentUser={user} /> : null}
 
       <div className="navbar__middle">
-        <div className="navbar__option navbar__option--active">
+        <div className={`navbar__option ${homeActive}`} onClick={() => history.push("/feed")}>
           <HomeIcon fontSize="large" />
         </div>
         <div className="navbar__option">
