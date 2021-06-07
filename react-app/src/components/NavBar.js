@@ -26,7 +26,7 @@ const NavBar = ({ user }) => {
   const users = useSelector(state => state.users);
   const stateUser = useSelector(state => state.user);
   const theUser = stateUser[user.id]
-  const { showDropdown, setShowDropdown, searchInput, setSearchInput, setSearchResults, showSearch, setShowSearch } = useConsumeContext();
+  const { setShowPhotoModal, setShowCoverModal, showDropdown, setShowDropdown, searchInput, setSearchInput, setSearchResults, showSearch, setShowSearch } = useConsumeContext();
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -34,6 +34,11 @@ const NavBar = ({ user }) => {
   const onLogout = async () => {
     dispatch(logout());
     setShowDropdown(false);
+    setShowPhotoModal(false);
+    setShowCoverModal(false);
+    setSearchResults([]);
+    setSearchInput("");
+    setShowSearch(false);
   };
 
   const goToProfile = () => {

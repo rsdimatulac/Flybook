@@ -13,6 +13,7 @@
 }
 
 .cover__photo {
+    position: relative;
     height: 400px;
     width: 70%;
     background-position: center center;
