@@ -26,16 +26,14 @@ export const getUser = (id) => async (dispatch) => {
 };
 
 export const editUserProfile = (id, updates) => async (dispatch) => {
-    console.log("JSON", id, JSON.stringify([updates]))
     try {
         const response = await fetch(`/api/users/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify([updates]) // might be without curly braces
+            body: JSON.stringify(updates) // might be without curly braces
         });
-        // updates = [{}, {}]
         if (!response.ok) throw response;
         const data = await response.json();
         dispatch(editProfile(data))

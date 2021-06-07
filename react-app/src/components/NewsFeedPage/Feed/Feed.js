@@ -30,8 +30,8 @@ const Feed = ({ user }) => {
     const [newPostURL, setNewPostURL] = useState("");
     const dispatch = useDispatch();
 
-    console.log("DROPDOWN isOPEN?", showEditDeleteOptions);
-    console.log("EDIT INPUT BOX isOPEN?", showEditInput);
+    // console.log("DROPDOWN isOPEN?", showEditDeleteOptions);
+    // console.log("EDIT INPUT BOX isOPEN?", showEditInput);
 
     const handleClick = (e) => {
         e.stopPropagation();

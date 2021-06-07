@@ -55,6 +55,7 @@ const LoginForm = () => {
             value={email}
             required
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div className="login__input">
