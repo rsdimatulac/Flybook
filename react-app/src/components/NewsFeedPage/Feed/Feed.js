@@ -10,7 +10,8 @@ import "./Post.css";
 
 const Feed = ({ user }) => {
     const posts = useSelector(state => state.posts);
-    const allPosts = Object.values(posts).reverse();
+    let allPosts = Object.values(posts).reverse();
+    allPosts = allPosts.slice(0, 6); // limit to 5 only
     const dispatch = useDispatch();
 
 

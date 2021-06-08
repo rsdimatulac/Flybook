@@ -8,6 +8,7 @@ import ErrorPage from "./components/ErrorPage/Error";
 import NewsFeedPage from "./components/NewsFeedPage/NewsFeed";
 import ProfilePage from "./components/ProfilePage/Profile";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import ScrollToTop from "./context/ScrollToTop";
 import { authenticate } from "./store/session";
 import "./index.css";
 import "./reset.css";
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Switch>
         <Route path="/" exact>
           <SplashPage />
