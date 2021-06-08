@@ -11,6 +11,9 @@ import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import { useSelector, useDispatch } from "react-redux";
 import { editUserProfile, getUser } from "../../store/user";
 import useConsumeContext from "../../context/ModalContext";
+import CreatePost from "../NewsFeedPage/Feed/CreatePost";
+import Post from "../NewsFeedPage/Feed/Post";
+import { getAllPosts } from "../../store/posts";
 import { Modal } from "../../context/Modal";
 import "./ProfileModals.css";
 import "./Profile.css";
@@ -19,6 +22,8 @@ import "./Profile.css";
 const Profile = ({ currentUser }) => {
     const { showEditProfile, setShowEditProfile, showPhotoModal, setShowPhotoModal, showCoverModal, setShowCoverModal } = useConsumeContext();
     const { userId } = useParams();
+    const posts = useSelector(state => state.posts);
+    const userPosts = Object.values(posts)?.filter(post => post.wall_id === Number(userId))
     const user = useSelector(state => state.user);
     const theUser = user[userId];
     const [showBioInput, setShowBioInput] = useState(false);
@@ -36,6 +41,7 @@ const Profile = ({ currentUser }) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        dispatch(getAllPosts())
         dispatch(getUser(Number(userId)));
     }, [dispatch, userId]);
 
@@ -226,8 +232,8 @@ const Profile = ({ currentUser }) => {
                     </div>
                 </div>
                 <div className="bottom__right">
-                    <div className="profile__createPost">CreatePost Here</div>
-                    <div className="profile__eachPost">Each post</div>
+                    <CreatePost user={currentUser}/>
+                    {theUser && userPosts?.reverse().map((post, index) => (<Post post={post} key={index} user={theUser} currentUser={currentUser}/>))}
                 </div>
             </div>
         </div>
