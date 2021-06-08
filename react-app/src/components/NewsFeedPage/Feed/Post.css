@@ -82,6 +82,13 @@
 
 .postTop__info > h3 {
     font-size: medium;
+    display: flex;
+    align-items: center;
+}
+
+.postTop__info > h3 .MuiSvgIcon-root {
+    font-size: 30px;
+    color: gray;
 }
 
 .postTop__info > p {

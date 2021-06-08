@@ -7,6 +7,7 @@ import NearMeIcon from '@material-ui/icons/NearMe';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BlockIcon from '@material-ui/icons/Block';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { format } from "date-fns";
 import { Avatar } from '@material-ui/core';
 import { editPost, removePost } from "../../../store/posts";
@@ -20,6 +21,7 @@ const Post = ({ post, user, currentUser }) => {
     const { showEditDeleteOptions, setShowEditDeleteOptions, showEditInput, setShowEditInput } = useConsumeContext();
     const theUser = useSelector(state => state.user);
     const authorUser = theUser[post?.user_id]; // who created the post
+    const receiverUser = theUser[post?.wall_id]; // who received the post
     const [thePostID, setThePostID] = useState("");
     const [newPostBody, setNewPostBody] = useState("");
     const [newPostURL, setNewPostURL] = useState("");
@@ -31,6 +33,7 @@ const Post = ({ post, user, currentUser }) => {
 
     useEffect(() => {
         dispatch(getUser(Number(post?.user_id))) // get the author of the post
+        dispatch(getUser(Number(post?.wall_id))) // receiver of the post
     }, [dispatch, post.user_id]);
 
     const goToProfile = () => {
@@ -102,7 +105,10 @@ const Post = ({ post, user, currentUser }) => {
                 <div className="post__top">
                     <Avatar className="post__avatar" src={authorUser?.profile_src} onClick={goToProfile}/>
                     <div className="postTop__info">
-                        <h3>{`${authorUser?.firstname} ${authorUser?.lastname}`}</h3>
+                        {post?.user_id === post?.wall_id 
+                        ? <h3>{authorUser?.firstname} {authorUser?.lastname}</h3> 
+                        : <h3>{authorUser?.firstname} {authorUser?.lastname} <ArrowRightIcon /> {receiverUser?.firstname} {receiverUser?.lastname}</h3>
+                        }
                         <p>{format(new Date(post?.updated_at), "MMM d YYY, hh:mm a")}</p>
                     </div>
                     {/* It will only show when it's the user's post */}
