@@ -42,7 +42,11 @@
 }
 
 .createPost__body {
-    flex: 1;
+    flex: 0.90;
+}
+
+.createPost__url {
+    flex: 0.10;
 }
 
 .createPost__bottom {

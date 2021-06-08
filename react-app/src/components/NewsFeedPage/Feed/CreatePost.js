@@ -47,9 +47,10 @@ const CreatePost = ({ user }) => {
                             onChange={(e) => setPostBody(e.target.value)}
                             type="text"
                             required
-                            placeholder={`What's on your mind, ${user?.firstname}?`}
+                            placeholder={window.location.pathname.includes("/users/") ? `What's on your mind?` : `What's on your mind, ${user?.firstname}?`}
                         />
                         <input
+                            className="createPost__url"
                             type="text"
                             value={postURL}
                             onChange={(e) => setPostURL(e.target.value)}

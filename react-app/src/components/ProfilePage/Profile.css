@@ -1,7 +1,7 @@
 .profile {
     color: #050505;
     /* background-color: #f1f2f5; */
-    /* height: 100vw; */
+    /* height: fit-content; */
 }
 
 .profile__top {
@@ -139,17 +139,20 @@
 .profileNav__links div {
     margin-right: 20px;
     padding: 16px 15px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
 }
 
 .profileNav__links div:hover {
+    border-radius: 5px;
     color: #2e81f4;
     cursor: pointer;
-    padding-bottom: 12px;
-    border-bottom: 4px solid #2e81f4;
     background-color: #eff2f5;
 }
+
+.profileNav__links--active {
+    color: #2e81f4;
+    border-bottom: 4px solid #2e81f4;
+}
+
 
 .profileNav__edit {
     display: flex;
@@ -160,6 +163,7 @@
     border-radius: 5px;
     font-weight: 600;
     background-color: #eff2f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
 }
 
 .profileNav__edit:hover {
@@ -171,57 +175,64 @@
     margin-right: 10px;
 }
 
-.profile__bottom {
+/* TIMELINE TAB */
+
+.profileNav__timeline {
     background-color: #f1f2f5;
-    height: 50vw;
-    padding: 0 260px;
+    height: fit-content;
+    padding: 0 260px 50px;
     display: grid;
     grid-template-columns: 0.80fr 1fr;
     padding-top: 13px;
     grid-column-gap: 15px;
 }
 
-.bottom__left {
+.timeline__left {
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: 330px, repeat(2, 1fr);
     grid-row-gap: 15px;
     height: fit-content;
 }
 
-.bottom__left > div {
+.timeline__left > div {
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
 }
 
-.bottom__left h1 {
+.timeline__left h1 {
     font-size: 20px;
     margin-bottom: 5px;
 }
 
-.profile__intro {
+.profile__intro,
+.profileNav__about {
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.profile__intro > div {
+.profile__intro > div,
+.about__container > div {
     display: flex;
     align-items: center;
     padding: 10px 10px;
 }
 
-.profile__intro .MuiSvgIcon-root {
+.profile__intro .MuiSvgIcon-root,
+.about__container .MuiSvgIcon-root {
     margin-right: 10px;
     color: gray;
 }
 
-.profile__intro p {
+.profile__intro p,
+.about__container p {
     line-height: 18px;
 }
 
-.profile__intro span {
+.profile__intro span,
+.about__container span {
     font-weight: 600;
 }
 
@@ -234,6 +245,7 @@
     background-color: #eff2f5;
     display: flex;
     justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
 }
 
 .profileIntro__edit > .MuiSvgIcon-root {
@@ -249,11 +261,215 @@
     background-color: white;
 }
 
+.photos, .friends__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.each__photo {
+    height: 114px;
+    width: 114px;
+    margin: 5px;
+}
+
+.each__photo img {
+    height: 114px;
+    width: 114px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
 .profile__friends {
     background-color: white;
 }
 
-.bottom__right {
+.profile__friends > h1,
+.profile__photos > h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile__friends > h1 > span,
+.profile__photos > h1 > span {
+    color: #2e81f4;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 10px;
+}
+
+.profile__friends > h1 > span:hover,
+.profile__photos > h1 > span:hover {
+    cursor: pointer;
+    background-color: #eff2f5;
+    border-radius: 5px;
+}
+
+.profile__friends > p {
+    font-size: 17px;
+    color: #65676B;
+}
+
+.each__friend {
+    height: fit-content;
+    width: 114px;
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.each__friend:hover {
+    cursor: pointer;
+}
+
+.each__friend p {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 15px;
+}
+
+.no__friends {
+    margin: 5px;
+}
+
+.timeline__right {
     border-radius: 10px;
-    /* background-color: lightskyblue; */
+}
+
+.no__posts {
+    background-color: white;
+    margin-top: 15px;
+    box-sizing: border-box;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+/* ABOUT TAB */
+
+.profileNav__about,
+.profileNav__friends,
+.profileNav__photos {
+    background-color: #f1f2f5;
+    height: fit-content;
+    padding: 0 260px 50px;
+    padding-top: 13px;
+}
+
+.about__container,
+.friends__container,
+.photos__container {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.about__container > h1,
+.friends__container > h1,
+.photos__container > h1 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.about__editButton {
+    align-self: center;
+    border-radius: 5px;
+    font-weight: 600;
+    margin: 5px 0;
+    background-color: #eff2f5;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+}
+
+.about__editButton:hover {
+    cursor: pointer;
+    background-color: #d5d8dbab;
+}
+
+/* FRIENDS NAV TAB */
+
+.friends__container > div {
+    display: flex;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.each__friendContainer {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    position: relative;
+    width: 402px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(223, 220, 220, 0.438);
+}
+
+.each__friendContainerImg:hover,
+.each__friendContainerName > h3:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.each__friendContainerName {
+    line-height: 18px;
+    margin: 0 10px;
+}
+
+.each__friendContainerImg {
+    height: 80px;
+    width: 80px;
+    margin: 5px;
+}
+
+.each__friendContainerImg img {
+    height: 80px;
+    width: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.friend__optionIcon {
+    position: absolute;
+    right: 20px;
+    padding: 5px;
+    border-radius: 50%;
+    z-index: 50;
+    font-size: 20px;
+}
+
+.friend__optionIcon:hover {
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #eff2f5;
+}
+
+/* PHOTOS TAB */
+
+.photos__container > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.each__photoContainer {
+    height: 168px;
+    width: 168px;
+    margin: 5px;
+}
+
+.each__photoContainer img {
+    height: 168px;
+    width: 168px;
+    border-radius: 5px;
+    object-fit: cover;
 }

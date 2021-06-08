@@ -11,6 +11,7 @@
     justify-content: center;
     border-radius: 50%;
     background-color: #E4E6EB;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
 }
 
 .profile__add:hover {
@@ -75,6 +76,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+    
 }
 
 .photo__buttons button,
@@ -123,6 +125,7 @@
     border-radius: 5px;
     padding: 10px 12px;
     font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
 }
 
 .cover__add > .MuiSvgIcon-root {

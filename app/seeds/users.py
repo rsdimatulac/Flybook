@@ -43,12 +43,28 @@ def seed_users():
         cover_src="https://theflybook.s3.amazonaws.com/wilbur_cover.jpeg",
         bio="If birds can glide for long periods of time, then… why can't I?",
         location="Millville, Indiana",
+        school="App Academy",
         work="Aviator and Inventor"
+    )
+
+    user_3 = User(
+        firstname="Bessie",
+        lastname="Coleman",
+        email='bessie@fb.com',
+        password='password',
+        birthday=datetime.date(1892, 1, 26),
+        profile_src="https://theflybook.s3.amazonaws.com/bessie.jpg",
+        cover_src="https://theflybook.s3.amazonaws.com/bessie_cover.webp",
+        bio="The air is the only place free from prejudice.",
+        location="Atlanta, Texas",
+        school="Langston University",
+        work="American civil aviator"
     )
 
     db.session.add(demo)
     db.session.add(user_1)
     db.session.add(user_2)
+    db.session.add(user_3)
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.

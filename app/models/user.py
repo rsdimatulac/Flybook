@@ -109,8 +109,8 @@ class User(db.Model, UserMixin):
             "work": self.work,
             "created_at": self.created_at,
             "posts": {post.id: post.to_dict() for post in posts},
-            "comments": {comment.id: comment.to_dict() for comment in self.comments},
-            "likes": {like.id: like.to_dict() for like in self.likes}
+            "comments": [comment.to_dict() for comment in self.comments],
+            "likes": [like.to_dict() for like in self.likes]
         }
 
     def to_dict_simple(self):
@@ -142,10 +142,10 @@ class User(db.Model, UserMixin):
             "school": self.school,
             "work": self.work,
             "created_at": self.created_at,
-            "friends": {friend.id: friend.to_dict_no_friends() for friend in self.friends},
+            "friends": [friend.to_dict_no_friends() for friend in self.friends],
             "request_sent": {user.id: user.to_dict_simple() for user in self.request_sent},
             "request_received": {user.id: user.to_dict_simple() for user in self.request_received},
             "posts": {post.id: post.to_dict() for post in posts},
-            "comments": {comment.id: comment.to_dict() for comment in self.comments},
-            "likes": {like.id: like.to_dict() for like in self.likes}
+            "comments": [comment.to_dict() for comment in self.comments],
+            "likes": [like.to_dict() for like in self.likes]
         }

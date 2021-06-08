@@ -22,9 +22,10 @@ const Feed = ({ user }) => {
         <div className="feed">
             <StoryReel user={user} />
             <CreatePost user={user} />
-            {allPosts.length > 0 && allPosts?.map((post, index) => (
-                <Post key={index} post={post} currentUser={user}/>
-            ))}
+            {allPosts.length > 0 
+            ? allPosts?.map((post, index) => (<Post key={index} post={post} currentUser={user}/>))
+            : <div className="no__posts">No posts</div>
+        }
         </div>
     )
 }

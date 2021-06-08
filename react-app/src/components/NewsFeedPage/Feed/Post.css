@@ -91,6 +91,11 @@
     color: gray;
 }
 
+.postTop__info > h3 > span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .postTop__info > p {
     font-size: small;
     color: gray;

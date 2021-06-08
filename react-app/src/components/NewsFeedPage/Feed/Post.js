@@ -34,7 +34,7 @@ const Post = ({ post, user, currentUser }) => {
     useEffect(() => {
         dispatch(getUser(Number(post?.user_id))) // get the author of the post
         dispatch(getUser(Number(post?.wall_id))) // receiver of the post
-    }, [dispatch, post.user_id]);
+    }, [dispatch, post.user_id, post.wall_id]);
 
     const goToProfile = () => {
         history.push(`/users/${post?.user_id}`);
@@ -107,7 +107,7 @@ const Post = ({ post, user, currentUser }) => {
                     <div className="postTop__info">
                         {post?.user_id === post?.wall_id 
                         ? <h3>{authorUser?.firstname} {authorUser?.lastname}</h3> 
-                        : <h3>{authorUser?.firstname} {authorUser?.lastname} <ArrowRightIcon /> {receiverUser?.firstname} {receiverUser?.lastname}</h3>
+                        : <h3>{authorUser?.firstname} {authorUser?.lastname} <ArrowRightIcon /> <span onClick={() => history.push(`/users/${receiverUser?.id}`)}>{receiverUser?.firstname} {receiverUser?.lastname}</span></h3>
                         }
                         <p>{format(new Date(post?.updated_at), "MMM d YYY, hh:mm a")}</p>
                     </div>
