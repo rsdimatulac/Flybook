@@ -5,7 +5,8 @@ import "./StoryReel.css"
 
 const StoryReel = ({ user }) => {
     const friends = Object.values(user?.friends);
-    const friendsPost = friends.map(friend => Object.values(friend.posts).find(post => (post.photo_src !== "")));
+    const friendsPost = friends.map(friend => Object.values(friend.posts).find(post => (post.photo_src !== ""))).slice(0, 6); // limit to 5 only
+    // allPosts = allPosts.slice(0, 6); 
     const history = useHistory();
 
     const goToProfile = (friendId) => () => {
