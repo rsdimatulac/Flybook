@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { Avatar } from '@material-ui/core';
 import VideocamIcon from '@material-ui/icons/Videocam';
@@ -9,7 +10,7 @@ import "./CreatePost.css";
 
 
 const CreatePost = ({ user }) => {
-
+    const { userId } = useParams();
     const [postBody, setPostBody] = useState("");
     const [postURL, setPostURL] = useState("");
     const [wallId, setWallId] = useState("")
@@ -19,8 +20,10 @@ const CreatePost = ({ user }) => {
     useEffect(() => {
         if (window.location.pathname === "/feed") {
             setWallId(user?.id)
+        } else if (window.location.pathname.includes("/users/")) {
+            setWallId(Number(userId))
         }
-    }, [user.id])
+    }, [user.id, userId])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -61,7 +64,7 @@ const CreatePost = ({ user }) => {
                 </div> */}
             </div>
             <div className="createPost__bottom">
-                <div className="createPost__option">
+                <div className="createPost__option" style={{ display: window.location.pathname.includes("/users/") ? `none` : ``}}>
                     <VideocamIcon style={{ color: "red" }} />
                     <h3>Live Video</h3>
                 </div>

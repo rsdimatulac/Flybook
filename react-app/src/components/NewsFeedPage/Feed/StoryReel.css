@@ -1,5 +1,6 @@
 .story__reel {
     display: flex;
+    margin-bottom: 30px;
     /* justify-content: space-between; */
 }
 

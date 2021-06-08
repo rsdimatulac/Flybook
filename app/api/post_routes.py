@@ -71,6 +71,7 @@ def edit_post(post_id):
     post_to_edit.body = body
     post_to_edit.photo_src = photo_src
     post_to_edit.updated_at = updated_at
+    db.session.commit()
     return post_to_edit.to_dict()
 
 
