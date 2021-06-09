@@ -1,4 +1,75 @@
 .widgets {
     padding: 25px 10px;
-    flex: 0.50;
+    flex: 0.65;
+}
+
+.widgets > h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.friend__requests {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    margin-bottom: 15px;
+}
+
+.fr__avatar {
+    margin-right: 10px;
+}
+
+.fr__avatar:hover,
+.fr__info > h3 > span:hover {
+    cursor: pointer;
+}
+
+.fr__info {
+    color: #65676B;
+    line-height: 18px;
+}
+
+.fr__info > h3 {
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.fr__info > h3 > span {
+    font-weight: 600;
+    color: #050505;
+}
+
+.fr__info > p {
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+.fr__buttons {
+    display: flex;
+    align-items: center;
+    color: #050505;
+    font-size: 15px;
+}
+
+.fr__buttons > div {
+    padding: 10px 15px;
+    margin: 5px 10px 0px 0px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.frConfirm__button {
+    background-color: #1877F2;
+    color: white;
+}
+
+.frDelete__button {
+    background-color: #E4E6EB;
+}
+
+.fr__buttons > div:hover {
+    cursor: pointer;
 }

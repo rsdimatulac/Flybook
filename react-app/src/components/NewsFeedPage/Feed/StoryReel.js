@@ -7,7 +7,7 @@ const StoryReel = ({ user }) => {
     const friends = Object.values(user?.friends).slice(0, 5);
     const friendsPost = friends.map(friend => Object.values(friend.posts).find(post => (post.photo_src !== "" && post.photo_src !== null))); // limit to 5 only
     const history = useHistory();
-    console.log("FriendsPost", friendsPost)
+    
     const goToProfile = (friendId) => () => {
         history.push(`/users/${friendId}`);
     };

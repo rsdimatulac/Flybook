@@ -10,7 +10,7 @@ const NewsFeed = ({ user }) => {
         <div className="news__feed">
             <Sidebar user={user}/>
             <Feed user={user}/>
-            <Widgets />
+            <Widgets user={user}/>
             {/* Friend Request/Birthdays */}
         </div>
     )
