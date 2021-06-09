@@ -28,5 +28,5 @@ class Comment(db.Model):
             "body": self.body,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "likes": {like.id: like.to_dict() for like in self.likes}
+            "likes": [like.to_dict() for like in self.likes]
         }

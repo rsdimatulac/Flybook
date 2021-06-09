@@ -40,6 +40,6 @@ class Post(db.Model):
             "photo_src": self.photo_src,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
-            "comments": {comment.id: comment.to_dict() for comment in self.comments},
-            "likes": {like.id: like.to_dict() for like in self.likes},
+            "comments": [comment.to_dict() for comment in self.comments],
+            "likes": [like.to_dict() for like in self.likes],
         }

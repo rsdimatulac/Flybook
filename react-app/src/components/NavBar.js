@@ -52,9 +52,16 @@ const NavBar = ({ user }) => {
 
   const goToProfile = () => {
     setShowDropdown(false);
+    setShowSearch(false);
     history.push(`/users/${user?.id}`);
     setHomeActive("");
   };
+
+  const goToFeed = () => {
+    history.push("/feed");
+    setShowSearch(false);
+    setShowDropdown(false);
+  }
   
   useEffect(() => {
     if (window.location.pathname === "/feed") {
@@ -111,7 +118,7 @@ const NavBar = ({ user }) => {
       {showSearch ? <Search currentUser={user} /> : null}
 
       <div className="navbar__middle">
-        <div className={`navbar__option ${homeActive}`} onClick={() => history.push("/feed")}>
+        <div className={`navbar__option ${homeActive}`} onClick={goToFeed}>
           <HomeIcon fontSize="large" />
         </div>
         <div className="navbar__option">

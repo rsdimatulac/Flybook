@@ -4,11 +4,10 @@ import { useHistory } from 'react-router';
 import "./StoryReel.css"
 
 const StoryReel = ({ user }) => {
-    const friends = Object.values(user?.friends);
-    const friendsPost = friends.map(friend => Object.values(friend.posts).find(post => (post.photo_src !== ""))).slice(0, 6); // limit to 5 only
-    // allPosts = allPosts.slice(0, 6); 
+    const friends = Object.values(user?.friends).slice(0, 5);
+    const friendsPost = friends.map(friend => Object.values(friend.posts).find(post => (post.photo_src !== "" && post.photo_src !== null))); // limit to 5 only
     const history = useHistory();
-
+    console.log("FriendsPost", friendsPost)
     const goToProfile = (friendId) => () => {
         history.push(`/users/${friendId}`);
     };
@@ -16,8 +15,9 @@ const StoryReel = ({ user }) => {
     return (
         <div className="story__reel">
             {/* MAP FRIENDS */}
-            {friends && friends.map(friend =>
-                (<div onClick={goToProfile(friend?.id)} key={friend.id} className="story" style={{ backgroundImage: friendsPost[0]?.photo_src ? `url(${friendsPost[0]?.photo_src})` : `url(https://theflybook.s3.amazonaws.com/posts/ren_1.jpg)` }}>
+            {friends && friends.map((friend, index) =>
+                (<div onClick={goToProfile(friend?.id)} key={friend.id} className="story" style={{ backgroundImage: `url(${friendsPost[index]?.photo_src})` }}>
+                {/* (<div onClick={goToProfile(friend?.id)} key={friend.id} className="story" style={{ backgroundImage: friendsPost[0]?.photo_src ? `url(${friendsPost[0]?.photo_src})` : `url(https://theflybook.s3.amazonaws.com/posts/ren_1.jpg)` }}> */}
                     <Avatar src={friend.profile_src} className="story__avatar"/>
                     <h4>{`${friend.firstname} ${friend.lastname}`}</h4>
                 </div>)

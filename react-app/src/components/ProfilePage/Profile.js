@@ -218,10 +218,10 @@ const Profile = ({ currentUser }) => {
                 {showBioInput
                     ? <form onSubmit={handleBioSubmit}>
                         <textarea className="bio__textarea" value={newBio} onChange={(e) => setNewBio(e.target.value)} />
-                        <p>{101 - newBio.length} characters remaining</p>
+                        <p>{201 - newBio.length} characters remaining</p>
                         <div className="bio__buttons">
                             <div onClick={() => setShowBioInput(prevState => !prevState)}>Cancel</div>
-                            <button disabled={(101 - newBio.length) < 0 ? true : false} type="submit">Save</button>
+                            <button disabled={(201 - newBio.length) < 0 ? true : false} type="submit">Save</button>
                         </div>
                     </form>
                     : <h2>{theUser?.bio ? `${theUser?.bio}` : `Add bio`}</h2>}
@@ -276,7 +276,7 @@ const Profile = ({ currentUser }) => {
                         <div className="photos">
                             <div className="each__photo"><img src={theUser?.profile_src} alt="" /></div>
                             <div className="each__photo"><img src={theUser?.cover_src} alt="" /></div>
-                            {userPostsWithPhotos && userPostsWithPhotos?.slice(0, 8).map(post => (
+                            {userPostsWithPhotos && userPostsWithPhotos?.slice(0, 7).map(post => (
                                 <div key={post?.id} className="each__photo"><img src={post.photo_src} alt=""/></div>
                             ))}
                         </div>
@@ -286,7 +286,7 @@ const Profile = ({ currentUser }) => {
                         {userFriends?.length === 1 && userFriends?.length !== 0 ? <p>{userFriends?.length} friend</p> : <p>{userFriends?.length} friends</p>}
                         <div className="friends__list">
                             {userFriends?.length > 0 
-                            ? userFriends?.slice(0, 10).map(friend => (
+                            ? userFriends?.slice(0, 9).map(friend => (
                                 <div className="each__friend" key={friend?.id} onClick={() => history.push(`/users/${friend?.id}`)}>
                                     <div className="each__photo"><img src={friend?.profile_src} alt="" /></div>
                                     <p>{friend?.firstname} {friend?.lastname}</p>

@@ -55,6 +55,9 @@
     font-weight: normal;
     color: #65676B;
     font-size: 17px;
+    text-align: center;
+    margin: 0 80px;
+    line-height: 20px;
 }
 
 .editBio__button {
@@ -329,6 +332,7 @@
     font-size: 13px;
     font-weight: 500;
     line-height: 15px;
+    align-self: flex-start;
 }
 
 .no__friends {

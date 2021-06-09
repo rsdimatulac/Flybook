@@ -10,8 +10,10 @@ import "./Post.css";
 
 const Feed = ({ user }) => {
     const posts = useSelector(state => state.posts);
-    const allPosts = Object.values(posts).reverse();
+    const allPosts = Object.values(posts).reverse(); // ALL THE POSTS you and your friends posted, posts made on the users wall
     const dispatch = useDispatch();
+
+    console.log(user)
 
 
     useEffect(() => {
