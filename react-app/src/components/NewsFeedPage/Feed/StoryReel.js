@@ -17,15 +17,10 @@ const StoryReel = ({ user }) => {
             {/* MAP FRIENDS */}
             {friends && friends.map((friend, index) =>
                 (<div onClick={goToProfile(friend?.id)} key={friend.id} className="story" style={{ backgroundImage: `url(${friendsPost[index]?.photo_src})` }}>
-                {/* (<div onClick={goToProfile(friend?.id)} key={friend.id} className="story" style={{ backgroundImage: friendsPost[0]?.photo_src ? `url(${friendsPost[0]?.photo_src})` : `url(https://theflybook.s3.amazonaws.com/posts/ren_1.jpg)` }}> */}
                     <Avatar src={friend.profile_src} className="story__avatar"/>
                     <h4>{`${friend.firstname} ${friend.lastname}`}</h4>
                 </div>)
             )}
-            {/* <div className="story" style={{ backgroundImage: friendsPost[0]?.photo_src ? `url(${friendsPost[0]?.photo_src})` : `url(https://theflybook.s3.amazonaws.com/posts/ren_1.jpg)` }}>
-                <Avatar src={friends[0].profile_src} className="story__avatar" />
-                <h4>{`${friends[0].firstname} ${friends[0].lastname}`}</h4>
-            </div> */}
         </div>
     )
 }

@@ -32,7 +32,10 @@
 
 .story h4 {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    bottom: 15px;
+    padding: 0 10px;
     color: white;
+    display: flex;
+    flex-wrap: wrap;
 }
+

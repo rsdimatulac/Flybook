@@ -106,8 +106,8 @@ const Post = ({ post, user, currentUser }) => {
                     <Avatar className="post__avatar" src={authorUser?.profile_src} onClick={goToProfile}/>
                     <div className="postTop__info">
                         {post?.user_id === post?.wall_id 
-                        ? <h3>{authorUser?.firstname} {authorUser?.lastname}</h3> 
-                        : <h3>{authorUser?.firstname} {authorUser?.lastname} <ArrowRightIcon /> <span onClick={() => history.push(`/users/${receiverUser?.id}`)}>{receiverUser?.firstname} {receiverUser?.lastname}</span></h3>
+                        ? <h3 className="postTop__info__author" onClick={goToProfile}>{authorUser?.firstname} {authorUser?.lastname}</h3>
+                        : <h3 className="postTop__info__author" onClick={goToProfile}>{authorUser?.firstname} {authorUser?.lastname} <ArrowRightIcon /> <span onClick={() => history.push(`/users/${receiverUser?.id}`)}>{receiverUser?.firstname} {receiverUser?.lastname}</span></h3>
                         }
                         <p>{format(new Date(post?.updated_at), "MMM d YYY, hh:mm a")}</p>
                     </div>
