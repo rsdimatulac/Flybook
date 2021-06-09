@@ -13,8 +13,6 @@ const Feed = ({ user }) => {
     const allPosts = Object.values(posts).reverse(); // ALL THE POSTS you and your friends posted, posts made on the users wall
     const dispatch = useDispatch();
 
-    console.log(user)
-
 
     useEffect(() => {
         dispatch(getAllPosts());
