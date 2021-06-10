@@ -16,6 +16,7 @@
 
 .comment__topInfo {
     margin-left: 10px;
+    width: 100%;
 }
 
 .comment__name {
@@ -23,21 +24,35 @@
     padding: 8px 15px;
     border-radius: 15px;
     line-height: 18px;
+    
 }
 
-.comment__name > h3 {
+.comment__name > div {
+    display: flex;
+    align-items: center;
+}
+
+.comment__name > div > h3 {
     font-size: 13px;
     font-weight: 600;
+    margin-right: 10px;
 }
 
-.comment__name > h3:hover {
+.comment__name > div > h3:hover {
     cursor: pointer;
     text-decoration: underline;
 }
 
+.comment__name > div > div {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
 .comment__name > h4 {
     font-weight: normal;
-    font-size: 15px;
+    font-size: 14px;
+    margin-top: 2px;
 }
 
 .comment__bottomInfo {
@@ -53,4 +68,52 @@
 .comment__bottomInfo {
     font-weight: normal;
     font-size: 12px;
+}
+
+/* EDIT COMMENT */
+
+.comment__editInput {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.comment__editInput > form {
+    margin: 5px 0;
+    display: flex;
+    align-self: flex-start;
+    width: 100%;
+}
+
+.comment__editInput > form > input{
+    width: 100%;
+    outline-width: 0;
+    border: 1px solid #ccd0d5;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    font-family: inherit;
+}
+
+.comment__editInput > p {
+    font-style: italic;
+    font-size: small;
+    color: gray;
+    align-self: flex-start;
+}
+
+.comment__editDelete > div {
+    margin-right: 5px;
+    display:flex;
+    align-items: center;
+    padding: 0 4px;
+    border-radius: 4px;
+    color: #65676B;
+}
+
+.comment__editDelete > div:hover {
+    cursor: pointer;
+    background-color: lightgray;
+    color: #050505;
 }

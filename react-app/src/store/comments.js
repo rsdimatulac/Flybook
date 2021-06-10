@@ -69,7 +69,6 @@ export const editComment = (comment_id, body) => async (dispatch) => {
             },
             body: JSON.stringify({
                 body,
-                comment_id,
                 updated_at: new Date(),
             })
         });

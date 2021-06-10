@@ -11,26 +11,28 @@ const CreateComment = ({ postID, currentUser }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(commentBody, postID);
         await dispatch(createComment(commentBody, postID))
         setCommentBody("");
     }
 
     return (
         <div className="create__comment">
-            <Avatar src={currentUser?.profile_src} />
-            <form onSubmit={handleSubmit}>
-                <input
-                    className="comment__input"
-                    type="text"
-                    autoComplete="off"
-                    placeholder="Write a comment..."
-                    required
-                    value={commentBody}
-                    onChange={(e) => setCommentBody(e.target.value)}
-                />
-                <button type="submit" style={{ display: "none" }}>Hidden Submit</button>
-            </form>
+            <div>
+                <Avatar src={currentUser?.profile_src} />
+                <form onSubmit={handleSubmit}>
+                    <input
+                        className="comment__input"
+                        type="text"
+                        autoComplete="off"
+                        placeholder="Write a comment..."
+                        required
+                        value={commentBody}
+                        onChange={(e) => setCommentBody(e.target.value)}
+                    />
+                    <button type="submit" style={{ display: "none" }}>Hidden Submit</button>
+                </form>
+            </div>
+            <p>Press Enter key to create your comment.</p>
         </div>
     )
 }
