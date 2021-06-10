@@ -3,9 +3,9 @@ import React from 'react';
 import "./SidebarRow.css";
 
 
-const SidebarRow = ({ title, src, Icon, onVideoClick }) => {
+const SidebarRow = ({ title, src, Icon, onVideoClick, onFriendsClick }) => {
     return (
-        <div className="sidebar__row" onClick={ onVideoClick ? onVideoClick : null}>
+        <div className="sidebar__row" onClick={ onVideoClick ? onVideoClick : onFriendsClick}>
             {src && <Avatar src={src}/>}
             {Icon && <Icon />}
             <h4>{title}</h4>

@@ -34,7 +34,8 @@ const NavBar = ({ user }) => {
     setSearchInput, setSearchResults, 
     showSearch, setShowSearch,
     setShowEditDeleteOptions, setShowEditInput,
-    showVideoModal, setShowVideoModal 
+    showVideoModal, setShowVideoModal,
+    setShowFriendsModal
   } = useConsumeContext();
   const [homeActive, setHomeActive] = useState("");
 
@@ -52,6 +53,8 @@ const NavBar = ({ user }) => {
     setShowEditInput(false);
     setSearchResults([]);
     setSearchInput("");
+    setShowFriendsModal(false);
+    setShowVideoModal(false);
   };
 
   const goToProfile = () => {

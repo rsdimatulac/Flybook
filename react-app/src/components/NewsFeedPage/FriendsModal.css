@@ -1,0 +1,88 @@
+.friends__modal {
+    padding: 40px;
+    width: 440px;
+}
+
+.friends__modal > h1 > span {
+    font-weight: 400;
+    color: gray;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.friends__modal > div::-webkit-scrollbar {
+    display: none;
+}
+
+.friends__modal h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.friends__modal > div {
+    max-height: 460px;
+    overflow: auto;
+    background-color: #eff2f5;
+    padding: 5px 0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(223, 220, 220, 0.438);
+}
+
+.each__friendModal {
+    display: flex;
+    background-color: white;
+    align-items: center;
+    position: relative;
+    margin: 5px 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    border: 1px solid rgba(223, 220, 220, 0.438);
+}
+
+.each__friendModalImg:hover,
+.each__friendModalName > h3:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.each__friendModalName {
+    line-height: 18px;
+    margin: 0 10px;
+}
+
+.each__friendModalImg {
+    height: 80px;
+    width: 80px;
+    margin: 5px;
+}
+
+.each__friendModalImg img {
+    height: 80px;
+    width: 80px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.friend__modalIcon {
+    position: absolute;
+    right: 20px;
+    padding: 5px;
+    border-radius: 50%;
+    z-index: 50;
+    font-size: 20px;
+}
+
+.friend__modalIcon:hover {
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #eff2f5;
+}
+
+.no__friendsModal {
+    margin-top: 10px;
+}
