@@ -47,16 +47,16 @@ def new_comment():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-today = datetime.datetime.utcnow()
 
 @comment_routes.route('/<int:comment_id>', methods=['PATCH']) # PATCH /api/comments/:comment_id
 def edit_comment(comment_id):
     
     comment_to_edit = Comment.query.get(comment_id)
     body = request.get_json()['body']
+    updated_at = request.get_json()['updated_at']
 
     comment_to_edit.body = body
-    comment_to_edit.updated_at = today
+    comment_to_edit.updated_at = updated_at
     db.session.commit()
     return comment_to_edit.to_dict()
 

@@ -169,7 +169,7 @@ const Post = ({ post, user, currentUser }) => {
                     </div> */}
                 </div>
                 <div className="post__comments">
-                    {postComments && postComments.map(comment => <Comment key={comment?.id} comment={comment}/>)}
+                    {postComments && postComments.map(comment => <Comment key={comment?.id} comment={comment} currentUser={currentUser}/>)}
                 </div>
                 <CreateComment postID={post?.id} currentUser={currentUser}/>
             </div>

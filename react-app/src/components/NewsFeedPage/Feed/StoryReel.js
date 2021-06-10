@@ -4,8 +4,8 @@ import { useHistory } from 'react-router';
 import "./StoryReel.css"
 
 const StoryReel = ({ user }) => {
-    const friends = Object.values(user?.friends).slice(0, 5);
-    const friendsPost = friends.map(friend => Object.values(friend.posts).find(post => (post.photo_src !== "" && post.photo_src !== null))); // limit to 5 only
+    const friends = Object.values(user?.friends);
+    const friendsPost = friends.map(friend => friend.posts !== undefined && Object.values(friend.posts).find(post => (post.photo_src !== "" && post.photo_src !== null))).slice(0, 5); // limit to 5 only
     const history = useHistory();
     
     const goToProfile = (friendId) => () => {
@@ -14,11 +14,12 @@ const StoryReel = ({ user }) => {
 
     return (
         <div className="story__reel">
-            {/* MAP FRIENDS */}
-            {friends && friends.map((friend, index) =>
-                (<div onClick={goToProfile(friend?.id)} key={friend.id} className="story" style={{ backgroundImage: `url(${friendsPost[index]?.photo_src})` }}>
-                    <Avatar src={friend.profile_src} className="story__avatar"/>
-                    <h4>{`${friend.firstname} ${friend.lastname}`}</h4>
+            {friendsPost?.length > 0 && friendsPost?.map((post, index) =>
+                (post === undefined 
+                ? "" 
+                : <div onClick={goToProfile(friends[index]?.id)} key={friends[index]?.id} className="story" style={{ backgroundImage: `url(${post?.photo_src})` }}>
+                    <Avatar src={friends[index].profile_src} className="story__avatar"/>
+                    <h4>{`${friends[index].firstname} ${friends[index].lastname}`}</h4>
                 </div>)
             )}
         </div>
