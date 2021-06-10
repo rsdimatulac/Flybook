@@ -12,6 +12,7 @@ import { useHistory } from 'react-router';
 import { format } from "date-fns";
 import { Avatar } from '@material-ui/core';
 import { editPost, removePost } from "../../../store/posts";
+import { createPostLike, removeLike } from "../../../store/likes";
 import { getUser } from "../../../store/user";
 import { getAllComments } from "../../../store/comments"; 
 import useConsumeContext from "../../../context/ModalContext";
@@ -28,27 +29,45 @@ const Post = ({ post, user, currentUser }) => {
 
     const comments = useSelector(state => state.comments);
     const postComments = Object.values(comments).filter(comment => comment?.post_id === post?.id).slice(0, 3); // limit to 3
-
-
     const [thePostID, setThePostID] = useState("");
+    const [theLikeID, setTheLikeID] = useState("");
     const [newPostBody, setNewPostBody] = useState("");
     const [newPostURL, setNewPostURL] = useState("");
     const [showCreateComment, setShowCreateComment] = useState(false);
+    const [showPostLike, setShowPostLike] = useState(false);
+    const isPostLiked = post?.likes?.some(like => like.user_id === currentUser.id); // if post is liked by the currentUser
+    const like = post?.likes?.find(like => like.user_id === currentUser.id); // if post is liked by the currentUser
     const dispatch = useDispatch();
     const history = useHistory();
-
+    
     // console.log("DROPDOWN isOPEN?", showEditDeleteOptions);
     // console.log("EDIT INPUT BOX isOPEN?", showEditInput);
-
+    
     useEffect(() => {
+        if (isPostLiked) {
+            setShowPostLike(true);
+            setTheLikeID(like?.id);
+        }
         dispatch(getAllComments())
         dispatch(getUser(Number(post?.user_id))) // get the author of the post
         dispatch(getUser(Number(post?.wall_id))) // receiver of the post
-    }, [dispatch, post.user_id, post.wall_id]);
+    }, [dispatch, post.user_id, post.wall_id, like?.id]);
 
     const goToProfile = () => {
         history.push(`/users/${post?.user_id}`);
     };
+
+    const handlePostLike = (post) => async (e) => {
+        if (showPostLike) { // if the post is liked
+            // remove the like
+            await dispatch(removeLike(like?.id))
+            setShowPostLike(false);
+        } else { // if not liked
+            // add the like
+            await dispatch(createPostLike(post?.id))
+            setShowPostLike(true);
+        }
+    }
 
     const handleOptionsClick = (e) => {
         e.stopPropagation();
@@ -63,7 +82,6 @@ const Post = ({ post, user, currentUser }) => {
 
     const handleSubmitEditedPost = async (e) => {
         e.preventDefault();
-        console.log(thePostID, newPostBody, newPostURL)
         await dispatch(editPost(Number(thePostID), newPostBody, newPostURL));
 
         setNewPostBody("");
@@ -161,7 +179,7 @@ const Post = ({ post, user, currentUser }) => {
                         </div>
                     </>}
                 <div className={`${post?.id} post__options`}>
-                    <div className="post__option">
+                    <div className={`${post?.id} post__option`} onClick={handlePostLike(post)} style={{ color: showPostLike ? "#2e81f4" : "gray" }}>
                         <ThumbUpIcon />
                         <p>Like</p>
                     </div>
