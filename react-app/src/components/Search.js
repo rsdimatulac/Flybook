@@ -21,7 +21,7 @@ const Search = ({ currentUser }) => {
 
     return (
         <div className="search">
-            <h1>Search</h1>
+            <h1>Search<span>{searchResults.length > 0 ? searchResults.length : ""}</span></h1>
             {searchResults.length > 0
                 ? <div>
                     {searchResults.map(user => (

@@ -12,9 +12,22 @@
     color: #050505;
 }
 
+.search > div::-webkit-scrollbar {
+    display: none;
+}
+
 .search h1 {
     font-size: 20px;
     margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.search > h1 > span {
+    font-weight: 400;
+    color: gray;
+    font-size: 15px;
+    margin-left: 10px;
 }
 
 .search > div {

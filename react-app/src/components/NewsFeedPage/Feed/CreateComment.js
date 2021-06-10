@@ -32,7 +32,7 @@ const CreateComment = ({ postID, currentUser }) => {
                     <button type="submit" style={{ display: "none" }}>Hidden Submit</button>
                 </form>
             </div>
-            <p>Press Enter key to create your comment.</p>
+            <p>Press Enter key to share your comment.</p>
         </div>
     )
 }
