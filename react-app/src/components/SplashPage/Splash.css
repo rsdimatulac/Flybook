@@ -2,7 +2,7 @@
     background-color: #f0f2f5;
     /* height: 67vh; */
     height: fit-content;
-    padding: 155px 220px;
+    padding: 153px 220px;
     display: grid;
     grid-template-columns: 1fr 0.75fr;
     grid-column-gap: 40px;
