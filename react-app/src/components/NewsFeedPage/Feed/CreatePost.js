@@ -59,7 +59,7 @@ const CreatePost = ({ user }) => {
                         <button type="submit" style={{ display: "none" }}>Hidden Submit</button>
                     </form>
                 </div>
-                <p>Press Enter key to create your post.</p>
+                <p>Press Enter key to create your post.</p> 
                 {/* <div className="errors">
                     {errors?.map(error => (<div className="errors__div" key={error}>・{error}</div>))}
                 </div> */}

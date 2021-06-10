@@ -88,7 +88,7 @@ const Comment = ({ comment, currentUser }) => {
                 </div>
                 <div className="comment__bottomInfo">
                     <div>Like</div>・
-                    <p>{format(new Date(comment?.updated_at), "MMM d YYY, hh:mm a")}</p>
+                    <p>{format(new Date(comment?.updated_at), "MMM d, YYY, hh:mm a")}</p>
                 </div>
             </div>
         </div>

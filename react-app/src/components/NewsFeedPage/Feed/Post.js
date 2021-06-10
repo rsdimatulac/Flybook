@@ -33,6 +33,7 @@ const Post = ({ post, user, currentUser }) => {
     const [thePostID, setThePostID] = useState("");
     const [newPostBody, setNewPostBody] = useState("");
     const [newPostURL, setNewPostURL] = useState("");
+    const [showCreateComment, setShowCreateComment] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -53,6 +54,11 @@ const Post = ({ post, user, currentUser }) => {
         e.stopPropagation();
         setThePostID(e.target.parentNode.classList[0]);
         setShowEditDeleteOptions(prevState => !prevState);
+    }
+
+    const handleCommentClick = (e) => {
+        setThePostID(e.target.parentNode.classList[0]);
+        setShowCreateComment(prevState => !prevState);
     }
 
     const handleSubmitEditedPost = async (e) => {
@@ -117,7 +123,7 @@ const Post = ({ post, user, currentUser }) => {
                         ? <h3 className="postTop__info__author" onClick={goToProfile}>{authorUser?.firstname} {authorUser?.lastname}</h3>
                         : <h3 className="postTop__info__author" onClick={goToProfile}>{authorUser?.firstname} {authorUser?.lastname} <ArrowRightIcon /> <span onClick={() => history.push(`/users/${receiverUser?.id}`)}>{receiverUser?.firstname} {receiverUser?.lastname}</span></h3>
                         }
-                        <p>{format(new Date(post?.updated_at), "MMM d YYY, hh:mm a")}</p>
+                        <p>{format(new Date(post?.updated_at), "MMM d, YYY, hh:mm a")}</p>
                     </div>
                     {/* It will only show when it's the user's post */}
                     {currentUser?.id === post?.user_id &&
@@ -154,12 +160,12 @@ const Post = ({ post, user, currentUser }) => {
                             <img src={post?.photo_src} alt="" />
                         </div>
                     </>}
-                <div className={`post__options`}>
+                <div className={`${post?.id} post__options`}>
                     <div className="post__option">
                         <ThumbUpIcon />
                         <p>Like</p>
                     </div>
-                    <div className={`post__option`}>
+                    <div className={`${post?.id} post__option`} onClick={handleCommentClick} style={{ color: showCreateComment ? "#2e81f4" : "gray"}}>
                         <ChatBubbleIcon />
                         <p>Comment</p>
                     </div>
@@ -171,7 +177,7 @@ const Post = ({ post, user, currentUser }) => {
                 <div className="post__comments">
                     {postComments && postComments.map(comment => <Comment key={comment?.id} comment={comment} currentUser={currentUser}/>)}
                 </div>
-                <CreateComment postID={post?.id} currentUser={currentUser}/>
+                {showCreateComment && Number(thePostID) === Number(post?.id) && <CreateComment postID={post?.id} currentUser={currentUser}/>}
             </div>
         </>
     )
