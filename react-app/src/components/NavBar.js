@@ -21,6 +21,7 @@ import { getUser } from "../store/user"
 import { getAllUsers } from "../store/users";
 import { logout } from "../store/session";
 import "./NavBar.css";
+import CreatePostModal from './NewsFeedPage/CreatePostModal';
 
 
 const NavBar = ({ user }) => {
@@ -35,7 +36,7 @@ const NavBar = ({ user }) => {
     showSearch, setShowSearch,
     setShowEditDeleteOptions, setShowEditInput,
     showVideoModal, setShowVideoModal,
-    setShowFriendsModal
+    setShowFriendsModal, showCreatePostModal, setShowCreatePostModal
   } = useConsumeContext();
   const [homeActive, setHomeActive] = useState("");
 
@@ -55,6 +56,7 @@ const NavBar = ({ user }) => {
     setSearchInput("");
     setShowFriendsModal(false);
     setShowVideoModal(false);
+    setShowCreatePostModal(false);
   };
 
   const goToProfile = () => {
@@ -153,16 +155,17 @@ const NavBar = ({ user }) => {
           <Avatar src={theUser?.profile_src} />
           <h4>{theUser?.firstname} {theUser?.lastname}</h4>
         </div>
-        <IconButton style={{ backgroundColor: "#eff2f5", borderRadius: "50%", padding: 12, marginRight: 10 }}>
+        <IconButton onClick={() => setShowCreatePostModal(prevState => !prevState)} style={{ backgroundColor: "#eff2f5", borderRadius: "50%", padding: 12, marginRight: 10 }}>
           <AddIcon />
         </IconButton>
-        <IconButton style={{ backgroundColor: "#eff2f5", borderRadius: "50%", padding: 12, marginRight: 10 }}>
+        {/* <IconButton style={{ backgroundColor: "#eff2f5", borderRadius: "50%", padding: 12, marginRight: 10 }}>
           <NotificationsActiveIcon />
-        </IconButton>
+        </IconButton> */}
         <IconButton onClick={() => setShowDropdown(prevState => !prevState)} style={{ backgroundColor: "#eff2f5", borderRadius: "50%", padding: 12, marginRight: 10 }}>
           <ExpandMoreIcon />
         </IconButton>
       </div>
+      {showCreatePostModal && <CreatePostModal user={user}/>}
       {/* DROPDOWN */}
       {showDropdown &&
         (<div className="dropdown__menu">

@@ -6,10 +6,12 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { createPost } from "../../../store/posts";
+import useConsumeContext from "../../../context/ModalContext";
 import "./CreatePost.css";
 
 
 const CreatePost = ({ user }) => {
+    const { setShowCreatePostModal } = useConsumeContext();
     const { userId } = useParams();
     const [postBody, setPostBody] = useState("");
     const [postURL, setPostURL] = useState("");
@@ -33,7 +35,8 @@ const CreatePost = ({ user }) => {
         // };
         setPostBody("");
         setPostURL("");
-    }
+        setShowCreatePostModal(false);
+    };
 
     return (
         <div className="create__post">
@@ -59,7 +62,7 @@ const CreatePost = ({ user }) => {
                         <button type="submit" style={{ display: "none" }}>Hidden Submit</button>
                     </form>
                 </div>
-                <p>Press Enter key to create your post.</p> 
+                <p>Press Enter key to share your post.</p> 
                 {/* <div className="errors">
                     {errors?.map(error => (<div className="errors__div" key={error}>・{error}</div>))}
                 </div> */}
