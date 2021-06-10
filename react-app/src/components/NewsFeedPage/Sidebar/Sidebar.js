@@ -4,10 +4,11 @@ import SidebarRow from "./SidebarRow";
 import VideoModal from "../VideoModal";
 import useConsumeContext from "../../../context/ModalContext";
 import "./Sidebar.css";
+import FriendsModal from '../FriendsModal';
 
 
 const Sidebar = ({ user }) => {
-    const { showVideoModal, setShowVideoModal } = useConsumeContext();
+    const { showVideoModal, setShowVideoModal, showFriendsModal, setShowFriendsModal } = useConsumeContext();
 
     return (
         <div className="sidebar">
@@ -17,9 +18,10 @@ const Sidebar = ({ user }) => {
             <a href="https://www.cdc.gov/" style={{ textDecoration: "none", color: "inherit" }}>
                 <SidebarRow src={"https://static.xx.fbcdn.net/rsrc.php/v3/yi/r/FZK_jEWapM0.png"} title="COVID-19 Information Center" />
             </a>
-            <SidebarRow src={"https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/tSXYIzZlfrS.png"} title="Friends" />
+            <SidebarRow onFriendsClick={() => setShowFriendsModal(prevState => !prevState)} src={"https://static.xx.fbcdn.net/rsrc.php/v3/yj/r/tSXYIzZlfrS.png"} title="Friends" />
             <SidebarRow onVideoClick={() => setShowVideoModal(prevState => !prevState)} src={"https://static.xx.fbcdn.net/rsrc.php/v3/y-/r/FhOLTyUFKwf.png"} title="Watch" />
             {showVideoModal && <VideoModal />}
+            {showFriendsModal && <FriendsModal user={user}/>}
         </div>
     )
 }

@@ -12,6 +12,18 @@
     color: #050505;
 }
 
+.search h1 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.search > div {
+    max-height: 500px;
+    overflow: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(223, 220, 220, 0.438);
+}
+
 .search__results {
     display: flex;
     align-items: center;
