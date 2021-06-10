@@ -118,7 +118,8 @@ class User(db.Model, UserMixin):
           "id": self.id,
           "firstname": self.firstname,
           "lastname": self.lastname,
-          "profile_src": self.profile_src
+          "profile_src": self.profile_src,
+          "email": self.email
       }
 
     def to_dict(self):

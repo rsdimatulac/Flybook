@@ -8,7 +8,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import ContactMailIcon from '@material-ui/icons/ContactMail';
 import AddIcon from "@material-ui/icons/Add";
-import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
+// import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Avatar, IconButton } from "@material-ui/core";
 import Brightness2Icon from '@material-ui/icons/Brightness2';

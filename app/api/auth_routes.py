@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
+from app.forms import PasswordForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -26,6 +27,17 @@ def authenticate():
     if current_user.is_authenticated:
         return current_user.to_dict()
     return {'errors': ['Unauthorized']}
+
+
+# @auth_routes.route('/forgot_password', methods=['POST'])  # /api/auth/forgot_password
+# def confirm_email():
+#     form = PasswordForm()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     if form.validate_on_submit():
+#         user = User.query.filter(User.email == form.data['email']).first()
+#         print("!!!!!!!!!!!!!!!!!EMAIL FOUND", user)
+#         return user.to_dict_simple()
+#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @auth_routes.route('/login', methods=['POST'])
