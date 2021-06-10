@@ -36,14 +36,19 @@ export const getAllComments = () => async (dispatch) => {
     }
 }
 
-export const createComment = (body) => async (dispatch) => {
+export const createComment = (body, post_id) => async (dispatch) => {
     try {
         const response = await fetch(`/api/comments/`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ body })
+            body: JSON.stringify({ 
+                body, 
+                post_id,
+                updated_at: new Date(),
+                created_at: new Date()
+            })
         });
         if (!response.ok) throw response;
         const comment = await response.json();
@@ -64,7 +69,8 @@ export const editComment = (comment_id, body) => async (dispatch) => {
             },
             body: JSON.stringify({
                 body,
-                comment_id
+                comment_id,
+                updated_at: new Date(),
             })
         });
         if (!response.ok) throw response;

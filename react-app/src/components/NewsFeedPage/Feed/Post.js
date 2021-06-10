@@ -3,18 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots as Options } from "react-icons/bs";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
-import NearMeIcon from '@material-ui/icons/NearMe';
+// import NearMeIcon from '@material-ui/icons/NearMe';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BlockIcon from '@material-ui/icons/Block';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { useHistory } from 'react-router';
 import { format } from "date-fns";
 import { Avatar } from '@material-ui/core';
 import { editPost, removePost } from "../../../store/posts";
-import { getUser } from "../../../store/user"
+import { getUser } from "../../../store/user";
+import { getAllComments } from "../../../store/comments"; 
 import useConsumeContext from "../../../context/ModalContext";
+import Comment from "./Comment";
+import CreateComment from "./CreateComment";
 import "./Post.css";
-import { useHistory } from 'react-router';
 
 
 const Post = ({ post, user, currentUser }) => {
@@ -22,6 +25,11 @@ const Post = ({ post, user, currentUser }) => {
     const theUser = useSelector(state => state.user);
     const authorUser = theUser[post?.user_id]; // who created the post
     const receiverUser = theUser[post?.wall_id]; // who received the post
+
+    const comments = useSelector(state => state.comments);
+    const postComments = Object.values(comments).filter(comment => comment?.post_id === post?.id).slice(0, 3); // limit to 3
+
+
     const [thePostID, setThePostID] = useState("");
     const [newPostBody, setNewPostBody] = useState("");
     const [newPostURL, setNewPostURL] = useState("");
@@ -32,6 +40,7 @@ const Post = ({ post, user, currentUser }) => {
     // console.log("EDIT INPUT BOX isOPEN?", showEditInput);
 
     useEffect(() => {
+        dispatch(getAllComments())
         dispatch(getUser(Number(post?.user_id))) // get the author of the post
         dispatch(getUser(Number(post?.wall_id))) // receiver of the post
     }, [dispatch, post.user_id, post.wall_id]);
@@ -40,7 +49,7 @@ const Post = ({ post, user, currentUser }) => {
         history.push(`/users/${post?.user_id}`);
     };
 
-    const handleClick = (e) => {
+    const handleOptionsClick = (e) => {
         e.stopPropagation();
         setThePostID(e.target.parentNode.classList[0]);
         setShowEditDeleteOptions(prevState => !prevState);
@@ -56,7 +65,7 @@ const Post = ({ post, user, currentUser }) => {
         setShowEditInput(false);
     }
 
-    const handleDeleteButton = async (e) => {
+    const handleDeleteButton = async () => {
         await dispatch(removePost(Number(thePostID)));
         setShowEditDeleteOptions(false);
     };
@@ -98,7 +107,6 @@ const Post = ({ post, user, currentUser }) => {
         )
     }
 
-
     return (
         <>
             <div className="post">
@@ -113,7 +121,7 @@ const Post = ({ post, user, currentUser }) => {
                     </div>
                     {/* It will only show when it's the user's post */}
                     {currentUser?.id === post?.user_id &&
-                        <div className={`${post?.id} post__optionIcon`} onClick={handleClick}>
+                        <div className={`${post?.id} post__optionIcon`} onClick={handleOptionsClick}>
                             <Options id="options__icon" />
                         </div>}
                 </div>
@@ -146,20 +154,24 @@ const Post = ({ post, user, currentUser }) => {
                             <img src={post?.photo_src} alt="" />
                         </div>
                     </>}
-                <div className="post__options">
+                <div className={`post__options`}>
                     <div className="post__option">
                         <ThumbUpIcon />
                         <p>Like</p>
                     </div>
-                    <div className="post__option">
+                    <div className={`post__option`}>
                         <ChatBubbleIcon />
                         <p>Comment</p>
                     </div>
-                    <div className="post__option">
+                    {/* <div className="post__option">
                         <NearMeIcon />
                         <p>Share</p>
-                    </div>
+                    </div> */}
                 </div>
+                <div className="post__comments">
+                    {postComments && postComments.map(comment => <Comment key={comment?.id} comment={comment}/>)}
+                </div>
+                <CreateComment postID={post?.id} currentUser={currentUser}/>
             </div>
         </>
     )

@@ -29,12 +29,17 @@ def new_comment():
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     post_id = request.get_json()['post_id']
+    body = request.get_json()['body']
+    updated_at = request.get_json()['updated_at']
+    created_at = request.get_json()['created_at']
 
     if form.validate_on_submit():
         comment = Comment(
             user_id=current_user.id,
             post_id=post_id,
-            body=form.data['body'],
+            body=body,
+            created_at=created_at,
+            updated_at=updated_at
         )
         db.session.add(comment)
         db.session.commit()

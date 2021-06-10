@@ -11,7 +11,7 @@ const Widgets = ({ user }) => {
     const userFRs = theUser?.request_received;
     const dispatch = useDispatch();
     const history = useHistory();
-    console.log("user", theUser?.request_received)
+    // console.log("user", theUser?.request_received)
 
     const goToProfile = (friendId) => () => {
         history.push(`/users/${friendId}`);

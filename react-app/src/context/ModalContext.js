@@ -7,7 +7,7 @@ export const ModalContext = (props) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [showEditDeleteOptions, setShowEditDeleteOptions] = useState(false);
     const [showEditInput, setShowEditInput] = useState(false);
-    const [searchInput, setSearchInput] = useState("")
+    const [searchInput, setSearchInput] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const [showSearch, setShowSearch] = useState(false);
     const [showPhotoModal, setShowPhotoModal] = useState(false);
@@ -25,7 +25,7 @@ export const ModalContext = (props) => {
             showSearch, setShowSearch,
             showPhotoModal, setShowPhotoModal,
             showCoverModal, setShowCoverModal,
-            showEditProfile, setShowEditProfile
+            showEditProfile, setShowEditProfile,
         }}>
             {props.children}
         </context.Provider>
