@@ -16,6 +16,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import useConsumeContext from "../context/ModalContext";
 import Search from "./Search";
+import VideoModal from "./NewsFeedPage/VideoModal";
 import { getUser } from "../store/user"
 import { getAllUsers } from "../store/users";
 import { logout } from "../store/session";
@@ -26,12 +27,15 @@ const NavBar = ({ user }) => {
   const users = useSelector(state => state.users);
   const stateUser = useSelector(state => state.user);
   const theUser = stateUser[user.id]
-  const { setShowEditProfile, setShowPhotoModal, 
+  const { 
+    setShowEditProfile, setShowPhotoModal, 
     setShowCoverModal, showDropdown, 
     setShowDropdown, searchInput, 
     setSearchInput, setSearchResults, 
     showSearch, setShowSearch,
-    setShowEditDeleteOptions, setShowEditInput } = useConsumeContext();
+    setShowEditDeleteOptions, setShowEditInput,
+    showVideoModal, setShowVideoModal 
+  } = useConsumeContext();
   const [homeActive, setHomeActive] = useState("");
 
   const history = useHistory();
@@ -121,7 +125,7 @@ const NavBar = ({ user }) => {
         <div className={`navbar__option ${homeActive}`} onClick={goToFeed}>
           <HomeIcon fontSize="large" />
         </div>
-        <div className="navbar__option">
+        <div className="navbar__option" onClick={() => setShowVideoModal(prevState => !prevState)}>
           <OndemandVideoIcon fontSize="large" />
         </div>
         <div className="navbar__option">
@@ -140,6 +144,7 @@ const NavBar = ({ user }) => {
           </a>
         </div>
       </div>
+      {showVideoModal && <VideoModal />}
       <div className="navbar__right">
         <div className="navbar__info" onClick={goToProfile}>
           <Avatar src={theUser?.profile_src} />

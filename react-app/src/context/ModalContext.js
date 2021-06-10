@@ -13,6 +13,8 @@ export const ModalContext = (props) => {
     const [showPhotoModal, setShowPhotoModal] = useState(false);
     const [showCoverModal, setShowCoverModal] = useState(false);
     const [showEditProfile, setShowEditProfile] = useState(false);
+    const [showVideoModal, setShowVideoModal] = useState(false);
+    const [showFriendsModal, setShowFriendsModal] = useState(false);
 
     return (
         <context.Provider value={{ 
@@ -26,6 +28,8 @@ export const ModalContext = (props) => {
             showPhotoModal, setShowPhotoModal,
             showCoverModal, setShowCoverModal,
             showEditProfile, setShowEditProfile,
+            showVideoModal, setShowVideoModal,
+            showFriendsModal, setShowFriendsModal
         }}>
             {props.children}
         </context.Provider>

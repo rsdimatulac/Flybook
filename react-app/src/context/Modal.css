@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 90;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 }
 
@@ -21,7 +22,8 @@
 
 #modal-content {
     height: fit-content;
-    width: 440px;
+    /* width: 440px; */
+    width: fit-content;
     border-radius: 10px;
     position: absolute;
     background-color: white;

@@ -1,0 +1,19 @@
+.video__modal {
+    padding: 30px 40px 40px;
+    height: fit-content;
+}
+
+.video__modal h1 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.video__modal h3 {
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.iframe__video {
+    margin-top: 15px;
+    border-radius: 10px;
+}
