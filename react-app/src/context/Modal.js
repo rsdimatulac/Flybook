@@ -21,7 +21,7 @@ export function ModalProvider({ children }) {
             <div ref={modalRef} />
         </>
     );
-}
+};
 
 export function Modal({ onClose, children }) {
     const modalNode = useContext(ModalContext);

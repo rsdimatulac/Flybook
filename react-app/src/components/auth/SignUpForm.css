@@ -36,6 +36,22 @@
 
 .signup__input {
     padding-bottom: 8px;
+    position: relative;
+    display: flex;
+}
+
+.visibility__iconPassword {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.visibility__iconPassword:hover {
+    cursor: pointer;
+    color: #050505;
+    background-color: #d8dbdd;
 }
 
 ::placeholder {

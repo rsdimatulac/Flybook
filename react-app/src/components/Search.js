@@ -7,7 +7,6 @@ import "./Search.css";
 
 const Search = ({ currentUser }) => {
     const { setSearchInput, searchResults, setSearchResults, setShowSearch } = useConsumeContext();
-
     const history = useHistory();
 
     const handleUserClick = (userID) => () => {
@@ -16,7 +15,7 @@ const Search = ({ currentUser }) => {
             setSearchResults([]);
             setSearchInput("");
             setShowSearch(false);
-        } // TEST
+        };
     };
 
     return (
@@ -39,7 +38,7 @@ const Search = ({ currentUser }) => {
                 : <p className="no__results">No results</p>
             }
         </div>
-    )
-}
+    );
+};
 
 export default Search;

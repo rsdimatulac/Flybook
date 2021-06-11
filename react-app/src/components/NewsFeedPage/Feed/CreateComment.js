@@ -11,9 +11,9 @@ const CreateComment = ({ postID, currentUser }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(createComment(commentBody, postID))
+        await dispatch(createComment(commentBody, postID));
         setCommentBody("");
-    }
+    };
 
     return (
         <div className="create__comment">

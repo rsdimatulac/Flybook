@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import SidebarRow from "./SidebarRow";
 import VideoModal from "../VideoModal";
 import useConsumeContext from "../../../context/ModalContext";
-import "./Sidebar.css";
 import FriendsModal from '../FriendsModal';
+import "./Sidebar.css";
 
 
 const Sidebar = ({ user }) => {
@@ -23,7 +23,7 @@ const Sidebar = ({ user }) => {
             {showVideoModal && <VideoModal />}
             {showFriendsModal && <FriendsModal user={user}/>}
         </div>
-    )
-}
+    );
+};
 
 export default Sidebar;

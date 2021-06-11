@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from 'react-router-dom';
 import { signUp, login } from '../../store/session';
 import { Modal } from "../../context/Modal";
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import useConsumeContext from "../../context/ModalContext";
 import "./SignUpForm.css";
 
@@ -17,6 +18,8 @@ const SignUpForm = () => {
   const [year, setYear] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [errors, setErrors] = useState([]);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
@@ -119,7 +122,7 @@ const SignUpForm = () => {
             </div>
             <div className="signup__input">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
@@ -127,10 +130,11 @@ const SignUpForm = () => {
                 autoComplete="off"
                 required
               ></input>
+              <div className="visibility__iconPassword" onClick={() => setShowPassword(prevState => !prevState)} style={{ color: showPassword ? "#050505" : "gray" }}><VisibilityIcon /></div>
             </div>
             <div className="signup__input">
               <input
-                type="password"
+                type={showConfirmPassword ? "text" : "password"}
                 name="confirm_password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 value={confirmPassword}
@@ -138,6 +142,7 @@ const SignUpForm = () => {
                 autoComplete="off"
                 required
               ></input>
+              <div className="visibility__iconPassword" onClick={() => setShowConfirmPassword(prevState => !prevState)} style={{ color: showConfirmPassword ? "#050505" : "gray" }}><VisibilityIcon /></div>
             </div>
             <div className="signup__birthday">
               <p>Birthday</p>

@@ -14,20 +14,20 @@ import { Avatar, IconButton } from "@material-ui/core";
 import Brightness2Icon from '@material-ui/icons/Brightness2';
 import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import useConsumeContext from "../context/ModalContext";
-import Search from "./Search";
 import VideoModal from "./NewsFeedPage/VideoModal";
-import { getUser } from "../store/user"
+import { getUser } from "../store/user";
 import { getAllUsers } from "../store/users";
 import { logout } from "../store/session";
-import "./NavBar.css";
+import Search from "./Search";
 import CreatePostModal from './NewsFeedPage/CreatePostModal';
+import useConsumeContext from "../context/ModalContext";
+import "./NavBar.css";
 
 
 const NavBar = ({ user }) => {
   const users = useSelector(state => state.users);
   const stateUser = useSelector(state => state.user);
-  const theUser = stateUser[user.id]
+  const theUser = stateUser[user.id];
   const { 
     setShowEditProfile, setShowPhotoModal, 
     setShowCoverModal, showDropdown, 
@@ -74,11 +74,11 @@ const NavBar = ({ user }) => {
   
   useEffect(() => {
     if (window.location.pathname === "/feed") {
-      setHomeActive("navbar__option--active")
+      setHomeActive("navbar__option--active");
     } else {
-      setHomeActive("")
+      setHomeActive("");
     }
-  }, [window.location.pathname])
+  }, [window.location.pathname]);
 
   const handleSearch = (e) => {
     if (e.target.value === "") {
@@ -98,7 +98,7 @@ const NavBar = ({ user }) => {
 
   useEffect(() => {
     dispatch(getAllUsers());
-    dispatch(getUser(user?.id))
+    dispatch(getUser(user?.id));
   }, [dispatch, user.id]);
 
 

@@ -13,7 +13,7 @@ const NewsFeed = ({ user }) => {
             <Widgets user={user}/>
             {/* Friend Request/Birthdays */}
         </div>
-    )
-}
+    );
+};
 
 export default NewsFeed;
