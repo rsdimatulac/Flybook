@@ -45,6 +45,8 @@ const Post = ({ post, user, currentUser }) => {
     useEffect(() => {
         if (isPostLiked) {
             setShowPostLike(true);
+        } else {
+            setShowPostLike(false);
         };
         dispatch(getAllComments());
         dispatch(getUser(Number(post?.user_id))); // get the author of the post
@@ -172,9 +174,12 @@ const Post = ({ post, user, currentUser }) => {
                         <div className="post__bottom">
                             <p>{post?.body}</p>
                         </div>
-                        <div className="post__image">
+                        {post?.photo_src 
+                        ? <div className="post__image">
                             <img src={post?.photo_src} alt="" />
                         </div>
+                        : null }
+                        {like?.user_id === currentUser?.id && showPostLike && <p className="liked__message"><span className="likePost__icon"><ThumbUpIcon /></span>You liked this post</p>}
                     </>}
                 <div className={`${post?.id} post__options`}>
                     <div className={`${post?.id} post__option`} onClick={handlePostLike(post)} style={{ color: showPostLike ? "#2e81f4" : "gray" }}>
