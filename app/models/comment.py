@@ -18,7 +18,7 @@ class Comment(db.Model):
 
     post = db.relationship('Post', back_populates='comments')
 
-    likes = db.relationship('Like', back_populates='comment')
+    likes = db.relationship('Like', back_populates='comment', cascade='all, delete')
 
     def to_dict(self):
         return {
