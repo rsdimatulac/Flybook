@@ -37,8 +37,8 @@ export const ModalContext = (props) => {
         }}>
             {props.children}
         </context.Provider>
-    )
-}
+    );
+};
 
 export default function useConsumeContext() {
     return useContext(context);

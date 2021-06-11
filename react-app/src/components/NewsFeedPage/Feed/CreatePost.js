@@ -15,17 +15,17 @@ const CreatePost = ({ user }) => {
     const { userId } = useParams();
     const [postBody, setPostBody] = useState("");
     const [postURL, setPostURL] = useState("");
-    const [wallId, setWallId] = useState("")
+    const [wallId, setWallId] = useState("");
     // const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
     useEffect(() => {
         if (window.location.pathname === "/feed") {
-            setWallId(user?.id)
+            setWallId(user?.id);
         } else if (window.location.pathname.includes("/users/")) {
-            setWallId(Number(userId))
-        }
-    }, [user.id, userId])
+            setWallId(Number(userId));
+        };
+    }, [user.id, userId]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

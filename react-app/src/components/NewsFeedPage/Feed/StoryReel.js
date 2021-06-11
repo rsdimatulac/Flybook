@@ -1,7 +1,7 @@
-import { Avatar } from '@material-ui/core';
 import React from 'react';
-import { useHistory } from 'react-router';
-import "./StoryReel.css"
+import { Avatar } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import "./StoryReel.css";
 
 const StoryReel = ({ user }) => {
     const friends = Object.values(user?.friends);

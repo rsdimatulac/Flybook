@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from "react-router-dom";
-// import { format, parseISO } from "date-fns";
+import { useSelector, useDispatch } from "react-redux";
 import { BsThreeDots as Options } from "react-icons/bs";
 import EditIcon from '@material-ui/icons/Edit';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
@@ -10,13 +10,12 @@ import WorkIcon from '@material-ui/icons/Work';
 import CakeIcon from '@material-ui/icons/Cake';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import EmailIcon from '@material-ui/icons/Email';
-import { useSelector, useDispatch } from "react-redux";
 import { editUserProfile, getUser } from "../../store/user";
-import useConsumeContext from "../../context/ModalContext";
-import CreatePost from "../NewsFeedPage/Feed/CreatePost";
-import Post from "../NewsFeedPage/Feed/Post";
 import { getAllPosts } from "../../store/posts";
 import { Modal } from "../../context/Modal";
+import CreatePost from "../NewsFeedPage/Feed/CreatePost";
+import Post from "../NewsFeedPage/Feed/Post";
+import useConsumeContext from "../../context/ModalContext";
 import "./ProfileModals.css";
 import "./Profile.css";
 
@@ -25,7 +24,7 @@ const Profile = ({ currentUser }) => {
     const { showEditProfile, setShowEditProfile, showPhotoModal, setShowPhotoModal, showCoverModal, setShowCoverModal } = useConsumeContext();
     const { userId } = useParams();
     const posts = useSelector(state => state.posts);
-    const userPosts = Object.values(posts)?.filter(post => post.wall_id === Number(userId)) // the posts of the user you're vieiwing
+    const userPosts = Object.values(posts)?.filter(post => post.wall_id === Number(userId)); // the posts of the user you're vieiwing
     const userPostsWithPhotos = userPosts?.filter(post => post.photo_src !== null && post.photo_src !== ""); // the posts with Photos of the user you're vieiwing
     const user = useSelector(state => state.user); // user you're viewing
     const theUser = user[userId]; // the user you're viewing
@@ -43,15 +42,14 @@ const Profile = ({ currentUser }) => {
     const [showAbout, setShowAbout] = useState(false);
     const [showFriends, setShowFriends] = useState(false);
     const [showPhotos, setShowPhotos] = useState(false);
-    const userBirthday = `${theUser?.birthday.slice(8, 11)} ${theUser?.birthday.slice(5, 7)}, ${theUser?.birthday.slice(12, 16)}`
-    // const userBirthdayTwo = `${theUser?.birthday.slice(12, 16)}-${theUser?.birthday.slice(8, 11)}-${theUser?.birthday.slice(5, 7)}`
-    const userJoined = theUser?.created_at.slice(12, 16)
+    const userBirthday = `${theUser?.birthday.slice(8, 11)} ${theUser?.birthday.slice(5, 7)}, ${theUser?.birthday.slice(12, 16)}`;
+    const userJoined = theUser?.created_at.slice(12, 16);
 
     const dispatch = useDispatch();
     const history = useHistory();
 
     useEffect(() => {
-        dispatch(getAllPosts())
+        dispatch(getAllPosts());
         dispatch(getUser(Number(userId)));
     }, [dispatch, userId]);
 
@@ -93,19 +91,19 @@ const Profile = ({ currentUser }) => {
         await dispatch(editUserProfile(currentUser?.id, [{ type: "profile_src", data: newPhoto }]));
         setShowPhotoModal(false);
         setNewBio("");
-    }
+    };
 
     const handleEditCover = (coverSrc) => () => {
         setShowCoverModal(prevState => !prevState);
         setNewCover(coverSrc ? coverSrc : "");
-    }
+    };
 
     const handleCoverSubmit = async (e) => {
         e.preventDefault();
         await dispatch(editUserProfile(currentUser?.id, [{ type: "cover_src", data: newCover }]));
         setShowCoverModal(false);
         setNewCover("");
-    }
+    };
 
     const handleEditBio = (bio) => () => {
         setShowBioInput(true);
@@ -130,8 +128,8 @@ const Profile = ({ currentUser }) => {
 
     const handleProfileSubmit = async (e) => {
         e.preventDefault();
-        const updates = [{ type: "work", data: newWork }, { type: "school", data: newSchool }, { type: "location", data: newLocation }, { type: "birthday", data: newBirthday }]
-        await dispatch(editUserProfile(currentUser?.id, updates))
+        const updates = [{ type: "work", data: newWork }, { type: "school", data: newSchool }, { type: "location", data: newLocation }, { type: "birthday", data: newBirthday }];
+        await dispatch(editUserProfile(currentUser?.id, updates));
         setShowEditProfile(false);
         setNewSchool("");
         setNewWork("");
@@ -142,8 +140,6 @@ const Profile = ({ currentUser }) => {
     const profileIntro = () => {
         return (
             <>
-                {/* style={{ display: currentUser.id === Number(userId) ? `` : `none` }} */}
-                {/* style={{ display: currentUser.id === Number(userId) && theUser?.work === "" ? `` : `none` }} */}
                 <div>
                     <SchoolIcon />
                     {theUser?.school ? <p>Studied at <span>{theUser?.school}</span></p> : <p>Add school</p>}
@@ -355,7 +351,7 @@ const Profile = ({ currentUser }) => {
                 </div>
             </div>}
         </div>
-    )
-}
+    );
+};
 
 export default Profile;

@@ -10,7 +10,7 @@ const SidebarRow = ({ title, src, Icon, onVideoClick, onFriendsClick }) => {
             {Icon && <Icon />}
             <h4>{title}</h4>
         </div>
-    )
-}
+    );
+};
 
 export default SidebarRow;

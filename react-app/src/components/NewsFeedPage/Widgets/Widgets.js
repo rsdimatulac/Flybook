@@ -1,8 +1,8 @@
+import React, { useEffect } from 'react';
 import { Avatar } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../../store/user";
-import React, { useEffect } from 'react';
 import "./Widgets.css";
 
 const Widgets = ({ user }) => {
@@ -11,14 +11,14 @@ const Widgets = ({ user }) => {
     const userFRs = theUser?.request_received;
     const dispatch = useDispatch();
     const history = useHistory();
-    // console.log("user", theUser?.request_received)
+
 
     const goToProfile = (friendId) => () => {
         history.push(`/users/${friendId}`);
     };
 
     useEffect(() => {
-        dispatch(getUser(user?.id))
+        dispatch(getUser(user?.id));
     }, [dispatch, user.id]);
 
     return (

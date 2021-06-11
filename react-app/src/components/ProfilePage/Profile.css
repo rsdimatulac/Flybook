@@ -337,6 +337,7 @@
 
 .no__friends {
     margin: 5px;
+    margin-left: 0;
 }
 
 .timeline__right {

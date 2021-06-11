@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { BsThreeDots as Options } from "react-icons/bs";
-import useConsumeContext from "../../context/ModalContext";
 import { Modal } from "../../context/Modal";
+import useConsumeContext from "../../context/ModalContext";
 import "./FriendsModal.css";
 
 
@@ -34,7 +34,7 @@ const FriendsModal = ({ user }) => {
                 </div>
             </Modal>
         </>
-    )
-}
+    );
+};
 
 export default FriendsModal;

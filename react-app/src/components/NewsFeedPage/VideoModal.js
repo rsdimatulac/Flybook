@@ -18,7 +18,7 @@ const VideoModal = () => {
                 </div>
             </Modal>
         </>
-    )
-}
+    );
+};
 
 export default VideoModal;

@@ -17,7 +17,7 @@ function CreatePostModal({user}) {
                 </div>
             </Modal>
         </>
-    )
-}
+    );
+};
 
 export default CreatePostModal

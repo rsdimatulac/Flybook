@@ -16,7 +16,7 @@ const Feed = ({ user }) => {
 
     useEffect(() => {
         dispatch(getAllPosts());
-    }, [dispatch])
+    }, [dispatch]);
 
     return (
         <div className="feed">

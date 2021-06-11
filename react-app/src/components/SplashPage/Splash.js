@@ -15,7 +15,7 @@ const Splash = () => {
                 <LoginForm />
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Splash;

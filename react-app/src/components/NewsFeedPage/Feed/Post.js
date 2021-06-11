@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { format } from "date-fns";
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDots as Options } from "react-icons/bs";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -8,8 +10,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import BlockIcon from '@material-ui/icons/Block';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import { useHistory } from 'react-router';
-import { format } from "date-fns";
 import { Avatar } from '@material-ui/core';
 import { editPost, removePost } from "../../../store/posts";
 import { createPostLike, removeLike } from "../../../store/likes";
@@ -30,7 +30,6 @@ const Post = ({ post, user, currentUser }) => {
     const comments = useSelector(state => state.comments);
     const postComments = Object.values(comments).filter(comment => comment?.post_id === post?.id).slice(0, 3); // limit to 3
     const [thePostID, setThePostID] = useState("");
-    const [theLikeID, setTheLikeID] = useState("");
     const [newPostBody, setNewPostBody] = useState("");
     const [newPostURL, setNewPostURL] = useState("");
     const [showCreateComment, setShowCreateComment] = useState(false);
@@ -46,12 +45,11 @@ const Post = ({ post, user, currentUser }) => {
     useEffect(() => {
         if (isPostLiked) {
             setShowPostLike(true);
-            setTheLikeID(like?.id);
-        }
-        dispatch(getAllComments())
-        dispatch(getUser(Number(post?.user_id))) // get the author of the post
-        dispatch(getUser(Number(post?.wall_id))) // receiver of the post
-    }, [dispatch, post.user_id, post.wall_id, like?.id]);
+        };
+        dispatch(getAllComments());
+        dispatch(getUser(Number(post?.user_id))); // get the author of the post
+        dispatch(getUser(Number(post?.wall_id))); // receiver of the post
+    }, [dispatch, post.user_id, post.wall_id, isPostLiked]);
 
     const goToProfile = () => {
         history.push(`/users/${post?.user_id}`);
@@ -60,25 +58,25 @@ const Post = ({ post, user, currentUser }) => {
     const handlePostLike = (post) => async (e) => {
         if (showPostLike) { // if the post is liked
             // remove the like
-            await dispatch(removeLike(like?.id))
+            await dispatch(removeLike(like?.id));
             setShowPostLike(false);
         } else { // if not liked
             // add the like
-            await dispatch(createPostLike(post?.id))
+            await dispatch(createPostLike(post?.id));
             setShowPostLike(true);
-        }
-    }
+        };
+    };
 
     const handleOptionsClick = (e) => {
         e.stopPropagation();
         setThePostID(e.target.parentNode.classList[0]);
         setShowEditDeleteOptions(prevState => !prevState);
-    }
+    };
 
     const handleCommentClick = (e) => {
         setThePostID(e.target.parentNode.classList[0]);
         setShowCreateComment(prevState => !prevState);
-    }
+    };
 
     const handleSubmitEditedPost = async (e) => {
         e.preventDefault();
@@ -87,7 +85,7 @@ const Post = ({ post, user, currentUser }) => {
         setNewPostBody("");
         setNewPostURL("");
         setShowEditInput(false);
-    }
+    };
 
     const handleDeleteButton = async () => {
         await dispatch(removePost(Number(thePostID)));
@@ -97,7 +95,7 @@ const Post = ({ post, user, currentUser }) => {
     const handleCancelButton = () => {
         setShowEditInput(false);
         setShowEditDeleteOptions(false);
-    }
+    };
 
     // if post.body and url exists, set it so it could shows the original values
     const postToEdit = (post) => () => {
@@ -105,7 +103,7 @@ const Post = ({ post, user, currentUser }) => {
         setShowEditDeleteOptions(false); // close the options dropdown
         setNewPostBody(post?.body ? post.body : "");
         setNewPostURL(post?.photo_src ? post.photo_src : "");
-    }
+    };
 
     const editInputBox = () => { // shows the input box with the original values
         return (
