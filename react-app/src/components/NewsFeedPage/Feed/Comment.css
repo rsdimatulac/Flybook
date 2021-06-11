@@ -24,7 +24,23 @@
     padding: 8px 15px;
     border-radius: 15px;
     line-height: 18px;
-    
+    position: relative;
+}
+
+.likeComment__icon {
+    position: absolute;
+    right: 0;
+    bottom: -9px;
+    color: white;
+    padding: 4px;
+    border-radius: 50%;;
+    background-color: #2e81f4;
+    display: flex;
+    align-items: center;
+}
+
+.likeComment__icon > .MuiSvgIcon-root {
+    font-size: 12px;
 }
 
 .comment__name > div {
@@ -68,6 +84,15 @@
 .comment__bottomInfo {
     font-weight: normal;
     font-size: 12px;
+}
+
+.likeComment__button {
+    font-weight: 600;
+}
+
+.likeComment__button:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /* EDIT COMMENT */
