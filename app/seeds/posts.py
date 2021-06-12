@@ -71,17 +71,17 @@ def seed_posts():
     )
 
     post_11 = Post(
-        user_id=6, # Jimmy
-        wall_id=6, # Jimmy
-        body="The first lesson is that you can't lose a war if you have command of the air, and you can't win a war if you haven't.",
-        photo_src="https://theflybook.s3.amazonaws.com/posts/jimmy_1.jpg"
-    )
-
-    post_12 = Post(
         user_id=7, # Charles
         wall_id=7, # Charles
         body="About forty miles away from Paris, I began to see the old trench flares they were sending up at Le Bourget. I knew then I had made it, and as I approached the field with all its lights, it was a simple matter to circle once and then pick a spot sufficiently far away from the crowd to land O.K.",
         photo_src="https://theflybook.s3.amazonaws.com/posts/charles_1.jpg"
+    )
+    
+    post_12 = Post(
+        user_id=6, # Jimmy
+        wall_id=6, # Jimmy
+        body="The first lesson is that you can't lose a war if you have command of the air, and you can't win a war if you haven't.",
+        photo_src="https://theflybook.s3.amazonaws.com/posts/jimmy_1.jpg"
     )
 
     post_13 = Post(
