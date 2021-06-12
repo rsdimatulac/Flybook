@@ -23,6 +23,28 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
 }
 
+.add__friend {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin: 5px 0;
+    padding: 0px 10px;
+    border-radius: 5px;
+    font-weight: 600;
+    color: white;
+    background-color: #1877F2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+}
+
+.add__friend > .MuiSvgIcon-root {
+    margin-right: 10px;
+}
+
+.add__friend:hover {
+    cursor: pointer;
+    background-color: #126de4;
+}
+
 .profile__avatar {
     position: absolute;
     bottom: 0px;
@@ -154,7 +176,6 @@
     color: #2e81f4;
     border-bottom: 4px solid #2e81f4;
 }
-
 
 .profileNav__edit {
     display: flex;

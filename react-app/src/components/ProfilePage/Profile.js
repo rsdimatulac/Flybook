@@ -10,6 +10,8 @@ import WorkIcon from '@material-ui/icons/Work';
 import CakeIcon from '@material-ui/icons/Cake';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import EmailIcon from '@material-ui/icons/Email';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
 import { editUserProfile, getUser } from "../../store/user";
 import { getAllPosts } from "../../store/posts";
 import { Modal } from "../../context/Modal";
@@ -29,6 +31,7 @@ const Profile = ({ currentUser }) => {
     const user = useSelector(state => state.user); // user you're viewing
     const theUser = user[userId]; // the user you're viewing
     const userFriends = theUser?.friends; // the friends of the user you're viewing
+    const isFriends = currentUser?.friends?.some(friend => friend?.id === Number(userId))
 
     const [showBioInput, setShowBioInput] = useState(false);
     const [newCover, setNewCover] = useState("");
@@ -42,6 +45,8 @@ const Profile = ({ currentUser }) => {
     const [showAbout, setShowAbout] = useState(false);
     const [showFriends, setShowFriends] = useState(false);
     const [showPhotos, setShowPhotos] = useState(false);
+    // MIGHT NEED TO MOVE IN THE MODAL CONTEXT vvvvv
+    const [isFriendAdded, setIsFriendAdded] = useState(false);
     const userBirthday = `${theUser?.birthday.slice(8, 11)} ${theUser?.birthday.slice(5, 7)}, ${theUser?.birthday.slice(12, 16)}`;
     const userJoined = theUser?.created_at.slice(12, 16);
 
@@ -52,6 +57,12 @@ const Profile = ({ currentUser }) => {
         dispatch(getAllPosts());
         dispatch(getUser(Number(userId)));
     }, [dispatch, userId]);
+
+    const handleAddFriendClick = () => {
+        setIsFriendAdded(prevState => !prevState);
+        // more logic to do here
+        // BONUS: Friend Request
+    }
 
     const handleTimelineClick = () => {
         setShowTimeline(true);
@@ -234,6 +245,13 @@ const Profile = ({ currentUser }) => {
                     <EditIcon />
                     <p>Edit Profile</p>
                 </div>
+                {/* TODO: IF THAT PERSON IS ON YOUR FRIEND REQUEST RECEIVED LIST, SHOW CONFIRM OR DELETE REQUEST BUTTON INSTEAD */}
+                {currentUser?.id !== Number(userId) && isFriends === false &&
+                    <div className="add__friend" onClick={handleAddFriendClick}>
+                        {isFriendAdded ? <PersonAddDisabledIcon/> : <PersonAddIcon />}
+                        <p>{isFriendAdded ? "Cancel Request" : "Add Friend"}</p>
+                    </div>
+                }
             </div>
             {showEditProfile && currentUser.id === Number(userId) &&
                 <Modal onClose={() => setShowEditProfile(prevState => !prevState)}>
