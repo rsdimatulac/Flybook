@@ -21,10 +21,13 @@ def seed_friends():
     nathaniel = users[14]
     earl = users[15]
     nurs = users[16]
+    mark = users[17]
 
 
     amelia.friends.append(ren) # amelia <-> ren
     ren.friends.append(amelia)
+    amelia.friends.append(mark)  # amelia <-> mark
+    mark.friends.append(amelia)
     amelia.friends.append(wilbur) # amelia <-> wilbur 
     wilbur.friends.append(amelia)
     amelia.friends.append(bessie) # amelia <-> bessie
@@ -51,6 +54,8 @@ def seed_friends():
     kimi.friends.append(ren)
     ren.friends.append(vivian)  # ren <-> vivian
     vivian.friends.append(ren)
+    ren.friends.append(mark)  # ren <-> mark
+    mark.friends.append(ren)
     ren.friends.append(nathaniel)  # ren <-> nathaniel
     nathaniel.friends.append(ren)
     ren.friends.append(earl)  # ren <-> earl

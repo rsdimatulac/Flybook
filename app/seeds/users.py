@@ -243,6 +243,21 @@ def seed_users():
         work="CEO of Green Garden and Fighter Pilot"
     )
 
+    user_17 = User(  # 18
+        firstname="Mark",
+        lastname="Zuckerberg",
+        email='mark@fb.com',
+        password='password',
+        birthday=datetime.date(1984, 5, 14),
+        profile_src="https://brenb.s3.amazonaws.com/avatars/user-3.jpg",
+        cover_src="https://theflybook.s3.amazonaws.com/mark_cover.jpg",
+        bio="Unless you are breaking stuff, you are not moving fast enough.",
+        location="White Plains, New York",
+        school="Harvard University",
+        work="Chairman, CEO and co-founder of Facebook"
+    )
+
+
     db.session.add(demo)
     db.session.add(user_1)
     db.session.add(user_2)
@@ -260,6 +275,7 @@ def seed_users():
     db.session.add(user_14)
     db.session.add(user_15)
     db.session.add(user_16)
+    db.session.add(user_17)
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.

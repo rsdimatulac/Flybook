@@ -1,30 +1,30 @@
+from random import randint
 from werkzeug.security import generate_password_hash
 from app.models import db, Post, User, Comment, Like
 
 
 def seed_likes():
 
-    like_1 = Like( # post
-        user_id=1, # Amelia
-        post_id=3, # Ren's post
-    )
+    users = User.query.all()
+    posts = Post.query.all()
+    comments = Comment.query.all()
 
-    like_2 = Like(  # comment
-        user_id=2, # Ren
-        comment_id=1, # Amelia's comment 
-        like_type='comment'
-    )
+    for _i in range(100):
+        like = Like(
+            user_id=users[randint(0, 17)].id,
+            post_id=posts[randint(0, 17)].id
+        )
+        db.session.add(like)
+        db.session.commit()
 
-    like_3 = Like(  # post
-        user_id=2, # Ren
-        post_id=17, # Amelia's post
-    )
-
-    db.session.add(like_1)
-    db.session.add(like_2)
-    db.session.add(like_3)
-    db.session.commit()
-
+    for _i in range(100):
+        like = Like(
+            user_id=users[randint(0, 17)].id,
+            comment_id=comments[randint(0, 13)].id,
+            like_type='comment'
+        )
+        db.session.add(like)
+        db.session.commit()
 
 def undo_likes():
     db.session.execute('TRUNCATE likes RESTART IDENTITY CASCADE;')

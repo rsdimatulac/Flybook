@@ -45,7 +45,7 @@ def seed_posts():
     )
 
     post_7 = Post(
-        user_id=10,  # Orville
+        user_id=10, # Orville
         wall_id=3,  # Wilbur
         body="What's up, brother? How are you doing?",
     )
@@ -113,8 +113,14 @@ def seed_posts():
     )
 
     post_17 = Post(
-        user_id=1, # Amelia
-        wall_id=2, # Ren
+        user_id=18, # Mark
+        wall_id=18, # Mark
+        body="Anyone here wants to take me and Priscilla up on a ride? 😁",
+    )
+
+    post_18 = Post(
+        user_id=1,  # Amelia
+        wall_id=2,  # Ren
         body="Congrats on your pilot's license, Ren! Let's go flying this weekend. See ya!",
         photo_src="https://theflybook.s3.amazonaws.com/posts/amelia_2.jpg"
     )
@@ -136,6 +142,7 @@ def seed_posts():
     db.session.add(post_15)
     db.session.add(post_16)
     db.session.add(post_17)
+    db.session.add(post_18)
     db.session.commit()
 
 
