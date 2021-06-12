@@ -5,7 +5,7 @@
 _[Flybook](https://theflybook.herokuapp.com/)_, a pixel perfect [Facebook](https://facebook.com/) clone, is a popular social media website that allows users to publicly share profile, share posts, leave comments, and add other users as friends.
 
 ### News Feed View
-![News Feed View](react-app/public/feed.gif)
+![News Feed View](react-app/public/splash_feed.gif)
 
 ### Profile View
 ![Channels View](react-app/public/profile.gif)
