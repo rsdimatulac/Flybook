@@ -1,7 +1,13 @@
 // constants
+const GET_LIKES = "likes/GET_LIKES"
 const ADD_POSTLIKE = "likes/ADD_POSTLIKE";
 const ADD_COMMENTLIKE = "likes/ADD_COMMENTLIKE";
 const DELETE_LIKE = "likes/DELETE_LIKE";
+
+const getLikes = (likes) => ({
+    type: GET_LIKES,
+    likes
+})
 
 const addPostLike = (like) => ({
     type: ADD_POSTLIKE,
@@ -17,6 +23,18 @@ const deleteLike = (like) => ({
     type: DELETE_LIKE,
     like
 })
+
+export const getAllLikes = () => async (dispatch) => {
+    try {
+        const response = await fetch(`/api/likes`);
+        if (!response.ok) throw response;
+        const likes = await response.json();
+        dispatch(getLikes(likes));
+        return likes;
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 export const createPostLike = (post_id) => async (dispatch) => {
     try {
@@ -85,6 +103,8 @@ const initialState = {};
 export default function likeReducer(state = initialState, action) {
     const state_dup = { ...state }
     switch (action.type) {
+        case GET_LIKES:
+            return { ...action.likes}
         case ADD_POSTLIKE:
             state_dup[action.like.id] = action.like
             return state_dup

@@ -32,15 +32,26 @@
     right: 0;
     bottom: -9px;
     color: white;
-    padding: 4px;
-    border-radius: 50%;;
-    background-color: #2e81f4;
+    background-color: white;
+    padding: 2px 2px 2px 3px;
+    border-radius: 999px;
     display: flex;
     align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.likeComment__icon > p {
+    color: #65676B;
+    font-size: 14px;
+    margin-left: 3px;
+    padding-right: 3px;
 }
 
 .likeComment__icon > .MuiSvgIcon-root {
-    font-size: 12px;
+    padding: 3px;
+    border-radius: 50%;;
+    background-color: #2e81f4;
+    font-size: 11px;
 }
 
 .comment__name > div {
@@ -87,7 +98,7 @@
 }
 
 .likeComment__button {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .likeComment__button:hover {

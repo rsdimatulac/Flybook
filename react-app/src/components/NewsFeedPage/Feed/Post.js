@@ -12,7 +12,7 @@ import BlockIcon from '@material-ui/icons/Block';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import { Avatar } from '@material-ui/core';
 import { editPost, removePost } from "../../../store/posts";
-import { createPostLike, removeLike } from "../../../store/likes";
+import { createPostLike, removeLike, getAllLikes } from "../../../store/likes";
 import { getUser } from "../../../store/user";
 import { getAllComments } from "../../../store/comments"; 
 import useConsumeContext from "../../../context/ModalContext";
@@ -24,6 +24,8 @@ import "./Post.css";
 const Post = ({ post, user, currentUser }) => {
     const { showEditDeleteOptions, setShowEditDeleteOptions, showEditInput, setShowEditInput } = useConsumeContext();
     const theUser = useSelector(state => state.user);
+    const postLikes = useSelector(state => state.likes);
+    const likes = Object.values(postLikes)?.filter(like => like?.like_type === "post" && like?.post_id === post?.id)
     const authorUser = theUser[post?.user_id]; // who created the post
     const receiverUser = theUser[post?.wall_id]; // who received the post
 
@@ -34,8 +36,8 @@ const Post = ({ post, user, currentUser }) => {
     const [newPostURL, setNewPostURL] = useState("");
     const [showCreateComment, setShowCreateComment] = useState(false);
     const [showPostLike, setShowPostLike] = useState(false);
-    const isPostLiked = post?.likes?.some(like => like.user_id === currentUser.id); // if post is liked by the currentUser
-    const like = post?.likes?.find(like => like.user_id === currentUser.id); // if post is liked by the currentUser
+    const isPostLiked = likes?.some(like => like.user_id === currentUser.id); // if post is liked by the currentUser
+    const like = likes?.find(like => like.user_id === currentUser.id); // if post is liked by the currentUser
     const dispatch = useDispatch();
     const history = useHistory();
     
@@ -49,6 +51,7 @@ const Post = ({ post, user, currentUser }) => {
             setShowPostLike(false);
         };
         dispatch(getAllComments());
+        dispatch(getAllLikes());
         dispatch(getUser(Number(post?.user_id))); // get the author of the post
         dispatch(getUser(Number(post?.wall_id))); // receiver of the post
     }, [dispatch, post.user_id, post.wall_id, isPostLiked]);
@@ -68,6 +71,17 @@ const Post = ({ post, user, currentUser }) => {
             setShowPostLike(true);
         };
     };
+
+    const likedMessageOptions = () => {
+        return (
+            <>
+                {likes.length > 0 
+                ? <p className="liked__message"><span className="likePost__icon"><ThumbUpIcon /></span>{likes?.length}</p>
+                : ""
+                }
+            </>
+        )
+    }
 
     const handleOptionsClick = (e) => {
         e.stopPropagation();
@@ -179,7 +193,10 @@ const Post = ({ post, user, currentUser }) => {
                             <img src={post?.photo_src} alt="" />
                         </div>
                         : null }
-                        {like?.user_id === currentUser?.id && showPostLike && <p className="liked__message"><span className="likePost__icon"><ThumbUpIcon /></span>You liked this post</p>}
+                        {like?.user_id === currentUser?.id && showPostLike ? 
+                        <p className="liked__message"><span className="likePost__icon"><ThumbUpIcon /></span>You liked this post {likes?.length === 1 && like?.user_id === currentUser?.id ? `` : `and ${likes?.length - 1} others`}</p>
+                        : likedMessageOptions()
+                        }
                     </>}
                 <div className={`${post?.id} post__options`}>
                     <div className={`${post?.id} post__option`} onClick={handlePostLike(post)} style={{ color: showPostLike ? "#2e81f4" : "gray" }}>

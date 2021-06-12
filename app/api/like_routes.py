@@ -5,6 +5,15 @@ from app.models import db, User, Post, Comment, Like
 
 like_routes = Blueprint('likes', __name__)
 
+
+@like_routes.route('/likes')  # GET /api/likes
+def get_likes():
+
+    likes = Like.query.all()
+
+    return {like.id: like.to_dict() for like in likes}
+
+
 @like_routes.route('/posts/<int:post_id>/likes', methods=['POST']) # POST /api/posts/:post_id/likes
 def post_like(post_id):
     

@@ -7,7 +7,7 @@ import { FaTrash as DeleteIcon } from "react-icons/fa";
 import { MdEdit as EditIcon } from "react-icons/md";
 import { TiCancel as CancelIcon } from "react-icons/ti";
 import { format } from "date-fns";
-import { createCommentLike, removeLike } from "../../../store/likes";
+import { createCommentLike, removeLike, getAllLikes } from "../../../store/likes";
 import { editComment, removeComment } from "../../../store/comments";
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import "./Comment.css";
@@ -15,12 +15,14 @@ import "./Comment.css";
 
 const Comment = ({ comment, currentUser }) => {
     const theUser = useSelector(state => state.user);
+    const commentLikes = useSelector(state => state.likes);
+    const likes = Object.values(commentLikes)?.filter(like => like?.like_type === "comment" && like?.comment_id === comment?.id)
     const authorUser = theUser[comment?.user_id];
     const [newCommentBody, setNewCommentBody] = useState("");
     const [showCommentLike, setShowCommentLike] = useState(false);
     const [showEditCommentInput, setShowEditCommentInput] = useState(false);
-    const isCommentLiked = comment?.likes?.some(like => like.user_id === currentUser.id); // if post is liked by the currentUser
-    const like = comment?.likes?.find(like => like.user_id === currentUser.id); // if post is liked by the currentUser
+    const isCommentLiked = likes?.some(like => like.user_id === currentUser.id); // if post is liked by the currentUser
+    const like = likes?.find(like => like.user_id === currentUser.id); // if post is liked by the currentUser
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -31,7 +33,10 @@ const Comment = ({ comment, currentUser }) => {
     useEffect(() => {
         if (isCommentLiked) {
             setShowCommentLike(true);
+        } else {
+            setShowCommentLike(false);
         }
+        dispatch(getAllLikes())
         dispatch(getUser(Number(comment?.user_id))); // get the author of the post
     }, [dispatch, comment.user_id, isCommentLiked]);
 
@@ -104,7 +109,7 @@ const Comment = ({ comment, currentUser }) => {
                           </div>
                         : <h4>{comment?.body}</h4>
                     }
-                    {showCommentLike && <div className="likeComment__icon"><ThumbUpIcon /></div>}
+                    {likes?.length > 0 && <div className="likeComment__icon"><ThumbUpIcon /> <p>{likes?.length}</p></div>}
                 </div>
                 <div className="comment__bottomInfo">
                     <div className="likeComment__button" onClick={handleCommentLike(comment)} style={{ color: showCommentLike ? "#2e81f4" : "inherit" }}>Like</div>・

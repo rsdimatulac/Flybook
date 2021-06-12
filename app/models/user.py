@@ -89,12 +89,7 @@ class User(db.Model, UserMixin):
 
     def to_dict_no_friends(self):
         posts = Post.query.filter(Post.wall_id == self.id).all()
-        # all_posts = {}
-        # user_posts = Post.query.filter(Post.user_id == self.id).all()
-        # all_posts.append(user_posts)
-        # friends_posts = Post.query.filter(Post.wall_id == self.id).all()
-        # all_posts.append(friends_posts)
-
+  
         return {
             "id": self.id,
             "firstname": self.firstname,
@@ -124,11 +119,6 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         posts = Post.query.filter(Post.wall_id == self.id).all()
-        # all_posts = {}
-        # user_posts = Post.query.filter(Post.user_id == self.id).all()
-        # all_posts.append(user_posts)
-        # friends_posts = Post.query.filter(Post.wall_id == self.id).all()
-        # all_posts.append(friends_posts)
 
         return {
             "id": self.id,
