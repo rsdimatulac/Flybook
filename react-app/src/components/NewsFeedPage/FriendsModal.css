@@ -53,6 +53,7 @@
 .each__friendModalName {
     line-height: 18px;
     margin: 0 10px;
+    text-transform: capitalize;
 }
 
 .each__friendModalImg {

@@ -124,7 +124,7 @@ const NavBar = ({ user }) => {
         </div>
       </div>
       {/* SEARCH RESULTS HERE */}
-      {showSearch ? <Search currentUser={user} /> : null}
+      {showSearch ? <Search currentUser={theUser} /> : null}
 
       <div className="navbar__middle">
         <div className={`navbar__option ${homeActive}`} onClick={goToFeed}>

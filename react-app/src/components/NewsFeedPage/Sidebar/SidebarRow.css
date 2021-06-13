@@ -14,6 +14,7 @@
 .sidebar__row h4 {
     margin-left: 20px;
     font-weight: 600;
+    text-transform: capitalize;
 }
 
 .sidebar__row > .MuiSvgIcon-root {

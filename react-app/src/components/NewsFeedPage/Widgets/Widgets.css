@@ -35,6 +35,7 @@
 .fr__info > h3 {
     font-weight: 400;
     font-size: 15px;
+    text-transform: capitalize;
 }
 
 .fr__info > h3 > span {

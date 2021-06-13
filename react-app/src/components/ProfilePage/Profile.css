@@ -69,6 +69,7 @@
 
 .profile__name h1 {
     font-size: 32px;
+    text-transform: capitalize;
     margin-bottom: 10px;
 }
 
@@ -348,11 +349,12 @@
     cursor: pointer;
 }
 
-.each__friend p {
+.each__friend > p {
     font-size: 13px;
     font-weight: 500;
     line-height: 15px;
     align-self: flex-start;
+    text-transform: capitalize;
 }
 
 .no__friends {
@@ -447,6 +449,7 @@
 .each__friendContainerName {
     line-height: 18px;
     margin: 0 10px;
+    text-transform: capitalize;
 }
 
 .each__friendContainerImg {

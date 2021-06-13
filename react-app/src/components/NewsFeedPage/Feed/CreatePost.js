@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Avatar } from '@material-ui/core';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { createPost } from "../../../store/posts";
+import { getUser } from "../../../store/user";
 import useConsumeContext from "../../../context/ModalContext";
 import "./CreatePost.css";
 
@@ -13,6 +14,8 @@ import "./CreatePost.css";
 const CreatePost = ({ user }) => {
     const { setShowCreatePostModal } = useConsumeContext();
     const { userId } = useParams();
+    const stateUser = useSelector(state => state.user);
+    const theUser = stateUser[user.id];
     const [postBody, setPostBody] = useState("");
     const [postURL, setPostURL] = useState("");
     const [wallId, setWallId] = useState("");
@@ -26,6 +29,10 @@ const CreatePost = ({ user }) => {
             setWallId(Number(userId));
         };
     }, [user.id, userId]);
+
+    useEffect(() => {
+        dispatch(getUser(user?.id));
+    }, [dispatch, user.id]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,7 +49,7 @@ const CreatePost = ({ user }) => {
         <div className="create__post">
             <div className="createPost__top">
                 <div>
-                    <Avatar src={user?.profile_src} />
+                    <Avatar src={theUser?.profile_src} />
                     <form onSubmit={handleSubmit} >
                         <input
                             className="createPost__body"
@@ -50,7 +57,7 @@ const CreatePost = ({ user }) => {
                             onChange={(e) => setPostBody(e.target.value)}
                             type="text"
                             required
-                            placeholder={window.location.pathname.includes("/users/") ? `What's on your mind?` : `What's on your mind, ${user?.firstname}?`}
+                            placeholder={window.location.pathname.includes("/users/") ? `What's on your mind?` : `What's on your mind, ${`${user?.firstname[0].toUpperCase()}${user?.firstname?.slice(1)}`}?`}
                         />
                         <input
                             className="createPost__url"

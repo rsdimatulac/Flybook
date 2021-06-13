@@ -38,7 +38,7 @@ function App() {
           <SplashPage />
           <Footer />
         </Route>
-        <ProtectedRoute path="/feed">
+        <ProtectedRoute path="/feed" exact>
           <NavBar user={user}/>
           <NewsFeedPage user={user}/>
         </ProtectedRoute>
@@ -47,7 +47,7 @@ function App() {
           <ProfilePage currentUser={user}/>
         </ProtectedRoute>
         <Route path="*">
-          <ErrorPage />
+          <ErrorPage/>
           <Footer />
         </Route>
       </Switch>

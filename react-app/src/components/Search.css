@@ -60,6 +60,7 @@
 .searchResults__name {
     line-height: 18px;
     font-size: 15px;
+    text-transform: capitalize;
 }
 
 .searchResults__name p {

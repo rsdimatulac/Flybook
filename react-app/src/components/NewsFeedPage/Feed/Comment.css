@@ -63,6 +63,7 @@
     font-size: 13px;
     font-weight: 600;
     margin-right: 10px;
+    text-transform: capitalize;
 }
 
 .comment__name > div > h3:hover {

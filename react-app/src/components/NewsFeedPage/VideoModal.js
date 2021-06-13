@@ -13,7 +13,7 @@ const VideoModal = () => {
                 <div className="video__modal">
                     <h1>Welcome to Flybook!</h1>
                     <h3>Hi, I'm Renerose, creator of Flybook. Thank you for visiting! <br />Watch how I did on my first solo flight. Safe skies! 😊</h3>
-                    <iframe className="iframe__video" width="560" height="315" src="https://www.youtube.com/embed/j4oS2QsaTB4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    <iframe className="iframe__video" width="560" height="315" src="https://www.youtube.com/embed/j4oS2QsaTB4" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen>
                     </iframe>
                 </div>
             </Modal>

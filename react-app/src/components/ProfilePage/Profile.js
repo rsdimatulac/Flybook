@@ -297,7 +297,7 @@ const Profile = ({ currentUser }) => {
                     </div>
                     <div className="profile__friends">
                         <h1>Friends <span onClick={handleFriendsClick}>See All Friends</span></h1>
-                        {userFriends?.length === 1 && userFriends?.length !== 0 ? <p>{userFriends?.length} friend</p> : <p>{userFriends?.length} friends</p>}
+                        {userFriends?.length > 0 ? <p>{userFriends?.length} friends</p> : ""}
                         <div className="friends__list">
                             {userFriends?.length > 0 
                             ? userFriends?.slice(0, 9).map(friend => (

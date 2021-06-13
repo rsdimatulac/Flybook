@@ -84,6 +84,7 @@
     font-size: medium;
     display: flex;
     align-items: center;
+    text-transform: capitalize;
 }
 
 .postTop__info > h3 .MuiSvgIcon-root {
