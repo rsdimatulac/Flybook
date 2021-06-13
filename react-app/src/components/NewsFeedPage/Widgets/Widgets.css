@@ -35,11 +35,11 @@
 .fr__info > h3 {
     font-weight: 400;
     font-size: 15px;
-    text-transform: capitalize;
 }
 
 .fr__info > h3 > span {
     font-weight: 600;
+    text-transform: capitalize;
     color: #050505;
 }
 
