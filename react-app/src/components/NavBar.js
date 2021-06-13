@@ -64,12 +64,16 @@ const NavBar = ({ user }) => {
     setShowSearch(false);
     history.push(`/users/${user?.id}`);
     setHomeActive("");
+    setShowVideoModal(false);
+    setShowCreatePostModal(false);
   };
 
   const goToFeed = () => {
     history.push("/feed");
     setShowSearch(false);
     setShowDropdown(false);
+    setShowVideoModal(false);
+    setShowCreatePostModal(false);
   }
   
   useEffect(() => {
@@ -186,10 +190,10 @@ const NavBar = ({ user }) => {
             </div>
           </a>
           <hr />
-          <div className="dropdown__option">
+          {/* <div className="dropdown__option">
             <Brightness2Icon />
             <p>Dark mode</p>
-          </div>
+          </div> */}
           <a href="https://rsdimatulac.github.io/" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="dropdown__option">
               <InfoIcon />
