@@ -11,7 +11,7 @@ import AddIcon from "@material-ui/icons/Add";
 // import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Avatar, IconButton } from "@material-ui/core";
-import Brightness2Icon from '@material-ui/icons/Brightness2';
+// import Brightness2Icon from '@material-ui/icons/Brightness2';
 import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import VideoModal from "./NewsFeedPage/VideoModal";

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { BsThreeDots as Options } from "react-icons/bs";
+// import { BsThreeDots as Options } from "react-icons/bs";
 import EditIcon from '@material-ui/icons/Edit';
 import CameraAltIcon from '@material-ui/icons/CameraAlt';
 import SchoolIcon from '@material-ui/icons/School';
@@ -347,7 +347,7 @@ const Profile = ({ currentUser }) => {
                                 </div>
                                 {currentUser?.id === Number(userId) &&
                                     <div className={`${friend?.id} friend__optionIcon`}>
-                                        <Options/>
+                                        {/* <Options/> */}
                                     </div>
                                 }
                             </div> 

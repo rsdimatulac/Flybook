@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import { BsThreeDots as Options } from "react-icons/bs";
+// import { BsThreeDots as Options } from "react-icons/bs";
 import { Modal } from "../../context/Modal";
 import useConsumeContext from "../../context/ModalContext";
 import "./FriendsModal.css";
@@ -24,7 +24,7 @@ const FriendsModal = ({ user }) => {
                                         <h3 onClick={() => history.push(`/users/${friend?.id}`)}>{friend?.firstname} {friend?.lastname}</h3>
                                     </div>
                                     <div className={`${friend?.id} friend__modalIcon`}>
-                                        <Options />
+                                        {/* <Options /> */}
                                     </div>
                                 </div>
                             ))}
