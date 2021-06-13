@@ -11,7 +11,7 @@ import AddIcon from "@material-ui/icons/Add";
 // import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { Avatar, IconButton } from "@material-ui/core";
-import Brightness2Icon from '@material-ui/icons/Brightness2';
+// import Brightness2Icon from '@material-ui/icons/Brightness2';
 import InfoIcon from '@material-ui/icons/Info';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import VideoModal from "./NewsFeedPage/VideoModal";
@@ -64,12 +64,16 @@ const NavBar = ({ user }) => {
     setShowSearch(false);
     history.push(`/users/${user?.id}`);
     setHomeActive("");
+    setShowVideoModal(false);
+    setShowCreatePostModal(false);
   };
 
   const goToFeed = () => {
     history.push("/feed");
     setShowSearch(false);
     setShowDropdown(false);
+    setShowVideoModal(false);
+    setShowCreatePostModal(false);
   }
   
   useEffect(() => {
@@ -186,10 +190,10 @@ const NavBar = ({ user }) => {
             </div>
           </a>
           <hr />
-          <div className="dropdown__option">
+          {/* <div className="dropdown__option">
             <Brightness2Icon />
             <p>Dark mode</p>
-          </div>
+          </div> */}
           <a href="https://rsdimatulac.github.io/" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="dropdown__option">
               <InfoIcon />

@@ -72,5 +72,5 @@
 }
 
 .fr__buttons > div:hover {
-    cursor: pointer;
+    cursor: not-allowed;
 }

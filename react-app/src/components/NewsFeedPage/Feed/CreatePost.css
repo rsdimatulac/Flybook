@@ -5,6 +5,14 @@
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
     width: 100%;
+    position: relative;
+}
+
+aside.emoji-picker-react {
+    position: absolute;
+    z-index: 60;
+    top: 160px;
+    right: 0;
 }
 
 .createPost__top {
@@ -42,7 +50,16 @@
 }
 
 .createPost__body {
-    flex: 0.90;
+    /* flex: 0.90; */
+    width: 100%;
+    z-index: 1;
+}
+
+.hidden__postInput {
+    z-index: 0;
+    position: absolute;
+    top: 25px;
+    left: 250px;
 }
 
 .createPost__url {
@@ -60,6 +77,9 @@
     align-items: center;
     color: gray;
     margin: 10px 5px;
+    outline-width: 0;
+    border: none;
+    background-color: inherit;
 }
 
 .createPost__option:hover {

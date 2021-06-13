@@ -131,7 +131,7 @@ const Error = () => {
                     </div>)}
             </nav>
             <div className="error__page">
-                <div className="error__image"><img src={"https://www.facebook.com/images/comet/empty_states_icons/404/404_failed_loading_gray_wash.svg"} /></div>
+                <div className="error__image"><img src={"https://www.facebook.com/images/comet/empty_states_icons/404/404_failed_loading_gray_wash.svg"} alt=""/></div>
                 <div className="error__info">
                     <h1>This Page Isn't Available</h1>
                     <p>The link may be broken, or the page may have been removed. Check to see if the link you're trying to open is correct.</p>
