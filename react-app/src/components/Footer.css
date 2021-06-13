@@ -6,12 +6,26 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+    position: relative;
 }
 
 .footer__technologies {
+    position: absolute;
     display: flex;
     align-items: center;
     font-size: 25px;
+    right: 10px;
+    bottom: 70px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+}
+
+.footer__technologies p {
+    font-size: 16px;
+    padding-left: 10px;
 }
 
 .footer__technologies i {
@@ -25,6 +39,16 @@
     font-size: 40px;
 }
 
+.technologies {
+    margin-right: 15px;
+    font-size: 25px;
+}
+
+.technologies:hover {
+    cursor: pointer;
+    color: red;
+}
+
 .footer__links {
     display: flex;
     align-items: center;
@@ -34,10 +58,6 @@
     margin-right: 15px;
 }
 
-#language {
-    font-size: 20px;
-    margin-right: 15px;
-}
 
 .about__link {
     font-size: 16px;
@@ -55,9 +75,9 @@
 }
 
 #github:hover {
-    color: #238636;
+    color: #69a74e;
 }
 
 #linkedin:hover {
-    color: #0A66C2;
+    color: #1877F2;
 }
