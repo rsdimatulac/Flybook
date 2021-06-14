@@ -59,7 +59,7 @@ aside.emoji-picker-react {
     z-index: 0;
     position: absolute;
     top: 25px;
-    left: 250px;
+    left: 80px;
 }
 
 .createPost__url {
