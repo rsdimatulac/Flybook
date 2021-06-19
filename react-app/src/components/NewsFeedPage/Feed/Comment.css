@@ -2,6 +2,8 @@
     padding: 10px 15px;
     display: flex;
     flex-direction: column;
+    max-height: 240px;
+    overflow-y: auto;
 }
 
 .each__comment {

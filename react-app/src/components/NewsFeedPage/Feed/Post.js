@@ -30,7 +30,7 @@ const Post = ({ post, user, currentUser }) => {
     const receiverUser = theUser[post?.wall_id]; // who received the post
 
     const comments = useSelector(state => state.comments);
-    const postComments = Object.values(comments).filter(comment => comment?.post_id === post?.id).slice(0, 3); // limit to 3
+    const postComments = Object.values(comments).filter(comment => comment?.post_id === post?.id); // limit to 3
     const [thePostID, setThePostID] = useState("");
     const [newPostBody, setNewPostBody] = useState("");
     const [newPostURL, setNewPostURL] = useState("");
